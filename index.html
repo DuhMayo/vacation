@@ -32,8 +32,7 @@
           <p class="eyebrow">June 1 to June 8, 2026</p>
           <h1>Baby Trip Map</h1>
           <p class="hero-copy">
-            Tap a marker or card to compare homes, view local amenities, and jump
-            to each host listing.
+            Pinch and zoom the map, then tap a marker to compare homes in that area.
           </p>
         </div>
         <button id="reset-view" class="ghost-button" type="button">
@@ -41,23 +40,12 @@
         </button>
       </header>
 
-      <section class="toolbar" aria-label="Location filters">
-        <div id="filter-chips" class="filter-chips"></div>
-      </section>
-
       <main class="map-wrap">
         <div id="map" aria-label="Vacation map"></div>
-
-        <section class="card-rail-shell">
-          <div class="card-rail-header">
-            <div>
-              <p class="eyebrow">Homes</p>
-              <h2 id="rail-title">All shortlisted stays</h2>
-            </div>
-            <p id="rail-count" class="rail-count"></p>
-          </div>
-          <div id="card-rail" class="card-rail" aria-label="Property cards"></div>
-        </section>
+        <div class="map-help">
+          <p class="eyebrow">Map First</p>
+          <p>Tap any marker to open a home. Next and Previous stay within the same area.</p>
+        </div>
       </main>
     </div>
 
@@ -94,6 +82,8 @@
             </div>
             <p id="detail-area" class="detail-area"></p>
           </div>
+
+          <div id="detail-location-nav" class="detail-location-nav"></div>
 
           <div class="detail-grid">
             <article class="detail-card">

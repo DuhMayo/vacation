@@ -3,6 +3,7 @@ import { homes, initialMapView } from "./data/listings.js";
 const map = L.map("map", {
   zoomControl: false,
   attributionControl: true,
+  tap: true,
 }).setView(initialMapView.center, initialMapView.zoom);
 
 L.control
@@ -23,6 +24,7 @@ const detailPlatform = document.querySelector("#detail-platform");
 const detailGroup = document.querySelector("#detail-group");
 const detailTitle = document.querySelector("#detail-title");
 const detailArea = document.querySelector("#detail-area");
+const detailLocationNav = document.querySelector("#detail-location-nav");
 const detailAddress = document.querySelector("#detail-address");
 const detailConfidence = document.querySelector("#detail-confidence");
 const detailAmenities = document.querySelector("#detail-amenities");
@@ -30,17 +32,11 @@ const detailNotes = document.querySelector("#detail-notes");
 const visitLink = document.querySelector("#visit-link");
 const prevHomeButton = document.querySelector("#prev-home");
 const nextHomeButton = document.querySelector("#next-home");
-const cardRail = document.querySelector("#card-rail");
-const railTitle = document.querySelector("#rail-title");
-const railCount = document.querySelector("#rail-count");
-const filterChips = document.querySelector("#filter-chips");
 const resetViewButton = document.querySelector("#reset-view");
 
-const locationGroups = ["All", ...new Set(homes.map((home) => home.locationGroup))];
-const markerLayer = L.layerGroup().addTo(map);
-let activeFilter = "All";
 let activeSlug = null;
 let activeTouchStartX = null;
+const markerRegistry = new Map();
 
 function createFallbackImage(home) {
   const title = encodeURIComponent(home.name);
@@ -72,96 +68,44 @@ function imageFor(home) {
   return home.image || createFallbackImage(home);
 }
 
-function filteredHomes() {
-  return activeFilter === "All"
-    ? homes
-    : homes.filter((home) => home.locationGroup === activeFilter);
-}
-
 function getHomeBySlug(slug) {
   return homes.find((home) => home.slug === slug);
 }
 
-function createMarker(home) {
-  const marker = L.marker([home.lat, home.lng], {
-    icon: L.divIcon({
-      className: "",
-      html: `<div class="marker-badge"></div>`,
-      iconSize: [18, 18],
-      iconAnchor: [9, 9],
-    }),
-  });
-
-  marker.on("click", () => openDetail(home.slug, { fly: false }));
-  return marker;
+function homesInSameArea(home) {
+  return homes
+    .filter((item) => item.locationGroup === home.locationGroup)
+    .sort((a, b) => a.name.localeCompare(b.name));
 }
 
-function renderMarkers() {
-  markerLayer.clearLayers();
-  filteredHomes().forEach((home) => {
-    markerLayer.addLayer(createMarker(home));
+function markerHtml(isActive = false) {
+  return `<div class="marker-badge${isActive ? " is-active" : ""}"></div>`;
+}
+
+function markerIcon(isActive = false) {
+  return L.divIcon({
+    className: "",
+    html: markerHtml(isActive),
+    iconSize: [22, 22],
+    iconAnchor: [11, 11],
   });
 }
 
-function renderFilters() {
-  filterChips.innerHTML = "";
-  locationGroups.forEach((group) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = `chip${group === activeFilter ? " active" : ""}`;
-    button.textContent = group;
-    button.addEventListener("click", () => {
-      activeFilter = group;
-      if (activeSlug && !filteredHomes().some((home) => home.slug === activeSlug)) {
-        activeSlug = null;
-        closeDetail();
-      }
-      renderEverything();
-      if (group === "All") {
-        resetSouthWestView();
-      }
-    });
-    filterChips.appendChild(button);
+function updateMarkerStates() {
+  markerRegistry.forEach((marker, slug) => {
+    marker.setIcon(markerIcon(slug === activeSlug));
   });
 }
 
-function cardTemplate(home) {
-  return `
-    <article class="home-card ${home.slug === activeSlug ? "active" : ""}" data-slug="${home.slug}" tabindex="0">
-      <img src="${imageFor(home)}" alt="${home.name}" loading="lazy" />
-      <div class="home-card-body">
-        <p class="eyebrow">${home.locationGroup}</p>
-        <h3>${home.name}</h3>
-        <p>${home.townArea}</p>
-      </div>
-    </article>
-  `;
-}
+function addMarkers() {
+  homes.forEach((home) => {
+    const marker = L.marker([home.lat, home.lng], {
+      icon: markerIcon(false),
+      title: home.name,
+    }).addTo(map);
 
-function renderCards() {
-  const homesToRender = filteredHomes();
-  railTitle.textContent =
-    activeFilter === "All" ? "All shortlisted stays" : activeFilter;
-  railCount.textContent = `${homesToRender.length} home${homesToRender.length === 1 ? "" : "s"}`;
-  cardRail.innerHTML = homesToRender.map(cardTemplate).join("");
-
-  cardRail.querySelectorAll(".home-card").forEach((card) => {
-    const slug = card.dataset.slug;
-    const home = getHomeBySlug(slug);
-    const image = card.querySelector("img");
-    if (home && image) {
-      image.onerror = () => {
-        image.src = createFallbackImage(home);
-      };
-    }
-    const activate = () => openDetail(slug);
-    card.addEventListener("click", activate);
-    card.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        activate();
-      }
-    });
+    marker.on("click", () => openDetail(home.slug, { fly: false }));
+    markerRegistry.set(home.slug, marker);
   });
 }
 
@@ -178,20 +122,30 @@ function syncHash(slug) {
   }
 }
 
+function updateLocationNav(home) {
+  const areaHomes = homesInSameArea(home);
+  const currentIndex = areaHomes.findIndex((item) => item.slug === home.slug);
+  detailLocationNav.textContent =
+    areaHomes.length > 1
+      ? `${currentIndex + 1} of ${areaHomes.length} homes in ${home.locationGroup}`
+      : `Only shortlisted home in ${home.locationGroup}`;
+}
+
+function updateNavButtons(home) {
+  const areaHomes = homesInSameArea(home);
+  const currentIndex = areaHomes.findIndex((item) => item.slug === home.slug);
+  prevHomeButton.disabled = currentIndex <= 0;
+  nextHomeButton.disabled = currentIndex >= areaHomes.length - 1;
+}
+
 function openDetail(slug, options = {}) {
   const home = getHomeBySlug(slug);
   if (!home) return;
 
   activeSlug = slug;
-  const currentHomes = filteredHomes();
-  if (!currentHomes.some((item) => item.slug === slug)) {
-    activeFilter = home.locationGroup;
-    renderEverything();
-  }
-
   detailPanel.classList.add("is-open");
   detailPanel.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
+  document.body.classList.add("detail-open");
 
   detailImage.src = imageFor(home);
   detailImage.alt = home.name;
@@ -208,42 +162,35 @@ function openDetail(slug, options = {}) {
   detailNotes.textContent = home.notes;
   visitLink.href = home.link;
 
-  renderCards();
-  updateNavButtons();
+  updateLocationNav(home);
+  updateNavButtons(home);
+  updateMarkerStates();
   syncHash(slug);
-  if (options.fly !== false) focusHome(home);
+
+  if (options.fly !== false) {
+    focusHome(home);
+  }
 }
 
 function closeDetail() {
   activeSlug = null;
   detailPanel.classList.remove("is-open");
   detailPanel.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
-  renderCards();
+  document.body.classList.remove("detail-open");
+  updateMarkerStates();
   syncHash(null);
 }
 
 function moveSelection(direction) {
-  const currentHomes = filteredHomes();
-  if (!currentHomes.length) return;
+  if (!activeSlug) return;
+  const currentHome = getHomeBySlug(activeSlug);
+  if (!currentHome) return;
 
-  const currentIndex = currentHomes.findIndex((home) => home.slug === activeSlug);
-  if (currentIndex < 0) {
-    openDetail(currentHomes[0].slug);
-    return;
-  }
-
+  const areaHomes = homesInSameArea(currentHome);
+  const currentIndex = areaHomes.findIndex((item) => item.slug === currentHome.slug);
   const nextIndex = currentIndex + direction;
-  if (nextIndex < 0 || nextIndex >= currentHomes.length) return;
-  openDetail(currentHomes[nextIndex].slug);
-}
-
-function updateNavButtons() {
-  const currentHomes = filteredHomes();
-  const currentIndex = currentHomes.findIndex((home) => home.slug === activeSlug);
-  prevHomeButton.disabled = currentIndex <= 0;
-  nextHomeButton.disabled =
-    currentIndex === -1 || currentIndex >= currentHomes.length - 1;
+  if (nextIndex < 0 || nextIndex >= areaHomes.length) return;
+  openDetail(areaHomes[nextIndex].slug);
 }
 
 function resetSouthWestView() {
@@ -252,22 +199,20 @@ function resetSouthWestView() {
   });
 }
 
-function renderEverything() {
-  renderFilters();
-  renderMarkers();
-  renderCards();
-}
+addMarkers();
+updateMarkerStates();
 
 closeDetailButton.addEventListener("click", closeDetail);
+prevHomeButton.addEventListener("click", () => moveSelection(-1));
+nextHomeButton.addEventListener("click", () => moveSelection(1));
+resetViewButton.addEventListener("click", resetSouthWestView);
+
 detailPanel.addEventListener("click", (event) => {
   const target = event.target;
   if (target instanceof HTMLElement && target.dataset.closeDetail === "true") {
     closeDetail();
   }
 });
-prevHomeButton.addEventListener("click", () => moveSelection(-1));
-nextHomeButton.addEventListener("click", () => moveSelection(1));
-resetViewButton.addEventListener("click", resetSouthWestView);
 
 document.addEventListener("keydown", (event) => {
   if (!detailPanel.classList.contains("is-open")) return;
@@ -297,8 +242,6 @@ window.addEventListener("hashchange", () => {
   }
   openDetail(slug, { fly: false });
 });
-
-renderEverything();
 
 if (window.location.hash) {
   openDetail(window.location.hash.replace(/^#/, ""), { fly: false });
