@@ -27,27 +27,55 @@
   </head>
   <body>
     <div class="app-shell">
+      <button
+        id="menu-toggle"
+        class="menu-button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="menu-panel"
+        aria-label="Open sightseeing guide"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
       <header class="hero-bar">
         <div>
           <p class="eyebrow">June 1 to June 8, 2026</p>
           <h1>Baby Trip Map</h1>
-          <p class="hero-copy">
-            Pinch and zoom the map, then tap a marker to compare homes in that area.
-          </p>
         </div>
-        <button id="reset-view" class="ghost-button" type="button">
-          Reset Cornwall / Devon View
-        </button>
       </header>
+      <button id="reset-view" class="ghost-button reset-button" type="button">
+        Reset Map
+      </button>
 
       <main class="map-wrap">
         <div id="map" aria-label="Vacation map"></div>
-        <div class="map-help">
-          <p class="eyebrow">Map First</p>
-          <p>Tap any marker to open a home. Next and Previous stay within the same area.</p>
-        </div>
       </main>
     </div>
+
+    <aside id="menu-panel" class="menu-panel" aria-hidden="true">
+      <div class="menu-scrim" data-close-menu="true"></div>
+      <section class="menu-sheet">
+        <div class="menu-head">
+          <div>
+            <p class="eyebrow">Sightseeing Guide</p>
+            <h2>Explore the wider area</h2>
+          </div>
+          <button
+            id="close-menu"
+            class="menu-close"
+            type="button"
+            aria-label="Close sightseeing guide"
+          >
+            ×
+          </button>
+        </div>
+
+        <div id="guide-list" class="guide-list"></div>
+      </section>
+    </aside>
 
     <aside
       id="detail-panel"
@@ -79,8 +107,16 @@
             <div>
               <p id="detail-group" class="eyebrow"></p>
               <h2 id="detail-title"></h2>
+              <p id="detail-area" class="detail-area"></p>
             </div>
-            <p id="detail-area" class="detail-area"></p>
+            <div class="detail-top-actions">
+              <button id="prev-home" class="nav-button" type="button">
+                ← Previous
+              </button>
+              <button id="next-home" class="nav-button" type="button">
+                Next →
+              </button>
+            </div>
           </div>
 
           <div id="detail-location-nav" class="detail-location-nav"></div>
@@ -104,9 +140,6 @@
           </div>
 
           <div class="detail-actions">
-            <button id="prev-home" class="nav-button" type="button">
-              ← Previous
-            </button>
             <a
               id="visit-link"
               class="visit-link"
@@ -116,9 +149,6 @@
             >
               Visit host website
             </a>
-            <button id="next-home" class="nav-button" type="button">
-              Next →
-            </button>
           </div>
         </div>
       </section>

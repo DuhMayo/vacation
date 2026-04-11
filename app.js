@@ -1,4 +1,4 @@
-import { homes, initialMapView } from "./data/listings.js";
+import { homes, initialMapView, sightseeingGuides } from "./data/listings.js";
 
 const map = L.map("map", {
   zoomControl: false,
@@ -33,6 +33,13 @@ const visitLink = document.querySelector("#visit-link");
 const prevHomeButton = document.querySelector("#prev-home");
 const nextHomeButton = document.querySelector("#next-home");
 const resetViewButton = document.querySelector("#reset-view");
+const menuToggle = document.querySelector("#menu-toggle");
+const closeMenuButton = document.querySelector("#close-menu");
+const menuPanel = document.querySelector("#menu-panel");
+const guideList = document.querySelector("#guide-list");
+const orderedHomes = [...homes].sort((a, b) =>
+  `${a.locationGroup} ${a.name}`.localeCompare(`${b.locationGroup} ${b.name}`)
+);
 
 let activeSlug = null;
 let activeTouchStartX = null;
@@ -70,12 +77,6 @@ function imageFor(home) {
 
 function getHomeBySlug(slug) {
   return homes.find((home) => home.slug === slug);
-}
-
-function homesInSameArea(home) {
-  return homes
-    .filter((item) => item.locationGroup === home.locationGroup)
-    .sort((a, b) => a.name.localeCompare(b.name));
 }
 
 function markerHtml(isActive = false) {
@@ -123,19 +124,14 @@ function syncHash(slug) {
 }
 
 function updateLocationNav(home) {
-  const areaHomes = homesInSameArea(home);
-  const currentIndex = areaHomes.findIndex((item) => item.slug === home.slug);
-  detailLocationNav.textContent =
-    areaHomes.length > 1
-      ? `${currentIndex + 1} of ${areaHomes.length} homes in ${home.locationGroup}`
-      : `Only shortlisted home in ${home.locationGroup}`;
+  const currentIndex = orderedHomes.findIndex((item) => item.slug === home.slug);
+  detailLocationNav.textContent = `${currentIndex + 1} of ${orderedHomes.length} homes · ${home.locationGroup}`;
 }
 
 function updateNavButtons(home) {
-  const areaHomes = homesInSameArea(home);
-  const currentIndex = areaHomes.findIndex((item) => item.slug === home.slug);
+  const currentIndex = orderedHomes.findIndex((item) => item.slug === home.slug);
   prevHomeButton.disabled = currentIndex <= 0;
-  nextHomeButton.disabled = currentIndex >= areaHomes.length - 1;
+  nextHomeButton.disabled = currentIndex >= orderedHomes.length - 1;
 }
 
 function openDetail(slug, options = {}) {
@@ -183,14 +179,10 @@ function closeDetail() {
 
 function moveSelection(direction) {
   if (!activeSlug) return;
-  const currentHome = getHomeBySlug(activeSlug);
-  if (!currentHome) return;
-
-  const areaHomes = homesInSameArea(currentHome);
-  const currentIndex = areaHomes.findIndex((item) => item.slug === currentHome.slug);
+  const currentIndex = orderedHomes.findIndex((item) => item.slug === activeSlug);
   const nextIndex = currentIndex + direction;
-  if (nextIndex < 0 || nextIndex >= areaHomes.length) return;
-  openDetail(areaHomes[nextIndex].slug);
+  if (nextIndex < 0 || nextIndex >= orderedHomes.length) return;
+  openDetail(orderedHomes[nextIndex].slug);
 }
 
 function resetSouthWestView() {
@@ -199,13 +191,84 @@ function resetSouthWestView() {
   });
 }
 
+function openMenu() {
+  menuPanel.classList.add("is-open");
+  menuPanel.setAttribute("aria-hidden", "false");
+  menuToggle.setAttribute("aria-expanded", "true");
+}
+
+function closeMenu() {
+  menuPanel.classList.remove("is-open");
+  menuPanel.setAttribute("aria-hidden", "true");
+  menuToggle.setAttribute("aria-expanded", "false");
+}
+
+function renderGuide() {
+  guideList.innerHTML = sightseeingGuides
+    .map(
+      (section) => `
+        <article class="guide-region">
+          <div class="guide-region-head">
+            <div>
+              <p class="eyebrow">${section.region}</p>
+              <h3>${section.region}</h3>
+            </div>
+            <button
+              class="guide-focus-button"
+              type="button"
+              data-focus-lat="${section.focus.center[0]}"
+              data-focus-lng="${section.focus.center[1]}"
+              data-focus-zoom="${section.focus.zoom}"
+            >
+              Focus map
+            </button>
+          </div>
+          <div class="guide-town-list">
+            ${section.towns
+              .map(
+                (town) => `
+                  <section class="guide-town">
+                    <h4>${town.name}</h4>
+                    <ul>
+                      ${town.highlights.map((item) => `<li>${item}</li>`).join("")}
+                    </ul>
+                  </section>
+                `
+              )
+              .join("")}
+          </div>
+        </article>
+      `
+    )
+    .join("");
+
+  guideList.querySelectorAll(".guide-focus-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      const lat = Number(button.dataset.focusLat);
+      const lng = Number(button.dataset.focusLng);
+      const zoom = Number(button.dataset.focusZoom);
+      map.flyTo([lat, lng], zoom, { duration: 0.7 });
+      closeMenu();
+    });
+  });
+}
+
 addMarkers();
 updateMarkerStates();
+renderGuide();
 
 closeDetailButton.addEventListener("click", closeDetail);
 prevHomeButton.addEventListener("click", () => moveSelection(-1));
 nextHomeButton.addEventListener("click", () => moveSelection(1));
 resetViewButton.addEventListener("click", resetSouthWestView);
+menuToggle.addEventListener("click", () => {
+  if (menuPanel.classList.contains("is-open")) {
+    closeMenu();
+  } else {
+    openMenu();
+  }
+});
+closeMenuButton.addEventListener("click", closeMenu);
 
 detailPanel.addEventListener("click", (event) => {
   const target = event.target;
@@ -214,9 +277,19 @@ detailPanel.addEventListener("click", (event) => {
   }
 });
 
+menuPanel.addEventListener("click", (event) => {
+  const target = event.target;
+  if (target instanceof HTMLElement && target.dataset.closeMenu === "true") {
+    closeMenu();
+  }
+});
+
 document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    if (menuPanel.classList.contains("is-open")) closeMenu();
+    if (detailPanel.classList.contains("is-open")) closeDetail();
+  }
   if (!detailPanel.classList.contains("is-open")) return;
-  if (event.key === "Escape") closeDetail();
   if (event.key === "ArrowLeft") moveSelection(-1);
   if (event.key === "ArrowRight") moveSelection(1);
 });

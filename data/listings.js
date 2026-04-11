@@ -1,6 +1,6 @@
 export const initialMapView = {
-  center: [50.38, -4.62],
-  zoom: 8,
+  center: [50.72, -4.55],
+  zoom: 7,
 };
 
 export const homes = [
@@ -338,5 +338,128 @@ export const homes = [
     lat: 51.1715,
     lng: -4.2122,
     image: "./assets/photos/devon-beach-court.png",
+  },
+];
+
+export const sightseeingGuides = [
+  {
+    region: "West Cornwall",
+    focus: { center: [50.17, -5.52], zoom: 9 },
+    towns: [
+      {
+        name: "St Ives / Carbis Bay",
+        highlights: [
+          "Spend a morning on Porthminster or Carbis Bay Beach, then walk the coast path into St Ives.",
+          "Browse Tate St Ives and the Barbara Hepworth Museum for the town's art scene.",
+          "Use the branch-line train from St Erth for a scenic, low-stress day trip into town.",
+        ],
+      },
+      {
+        name: "Porthcurno / St Levan",
+        highlights: [
+          "Book an evening or matinee at the Minack Theatre for the classic clifftop experience.",
+          "Add Porthcurno Beach and the PK Porthcurno museum for a relaxed half-day nearby.",
+          "Walk a short section of the South West Coast Path for dramatic west Cornwall views.",
+        ],
+      },
+    ],
+  },
+  {
+    region: "South & Mid Cornwall",
+    focus: { center: [50.34, -4.72], zoom: 9 },
+    towns: [
+      {
+        name: "Charlestown / St Austell",
+        highlights: [
+          "Wander Charlestown Harbour for tall ships, cafés, and an easy waterfront stroll.",
+          "Visit the Eden Project if you want a full attraction day close to several of the Cornwall stays.",
+          "Pair the harbour with Duporth or Carlyon Bay for an easy beach-and-lunch day.",
+        ],
+      },
+      {
+        name: "Looe",
+        highlights: [
+          "Take a harbour walk and boat trip, then explore the old town and beach on foot.",
+          "Plan a seafood lunch near the quay and leave time for the coast path around Hannafore.",
+          "Use Looe as a base for Polperro or nearby coves if you want a slower south-coast day.",
+        ],
+      },
+      {
+        name: "Truro / Porthtowan",
+        highlights: [
+          "Use Truro for cathedral, shops, and a more urban Cornwall day between beach stops.",
+          "Go to Porthtowan for beach time, sunset drinks, and easy coast path access.",
+          "Mix inland browsing in Truro with a late afternoon on the north-coast beaches.",
+        ],
+      },
+      {
+        name: "Saltash / Tamar Valley",
+        highlights: [
+          "Explore Cotehele and Cotehele Quay for gardens, riverside walks, and estate views.",
+          "Use the Tamar Valley for slower sightseeing, ferry crossings, and country pubs.",
+          "This area works best for a heritage-and-landscape day rather than a classic beach day.",
+        ],
+      },
+    ],
+  },
+  {
+    region: "Devon Coast",
+    focus: { center: [50.76, -4.03], zoom: 8 },
+    towns: [
+      {
+        name: "Brixham / Torbay",
+        highlights: [
+          "Spend time around Brixham Harbour, the marina, and the seafood spots by the water.",
+          "Use the South West Coast Path or boat trips to add views without much driving.",
+          "Torquay, Paignton, and Brixham are easy to combine if you want a broader English Riviera day.",
+        ],
+      },
+      {
+        name: "Plymouth",
+        highlights: [
+          "Walk the Barbican and Sutton Harbour, then head to the Hoe for the classic waterfront view.",
+          "Royal William Yard is a good pick for food, drinks, and a more polished waterfront atmosphere.",
+          "Plymouth works well if your group wants more city energy mixed with the coast.",
+        ],
+      },
+      {
+        name: "Croyde / Woolacombe / Westward Ho!",
+        highlights: [
+          "Choose these bases for beach days, surf schools, and long scenic sand rather than town sightseeing.",
+          "Baggy Point, Morte Point, and the Northam Burrows area are great for easy coastal walks.",
+          "These villages are strongest for outdoorsy days with cafés, pubs, and sunset beach time.",
+        ],
+      },
+    ],
+  },
+  {
+    region: "South Wales",
+    focus: { center: [51.62, -4.42], zoom: 8 },
+    towns: [
+      {
+        name: "Tenby",
+        highlights: [
+          "Use Tenby for a classic walled seaside town day with harbour views and sandy beaches.",
+          "Boat trips toward Caldey Island are one of the most popular local add-ons.",
+          "The town centre is easy to explore on foot, with plenty of lunch and ice-cream stops.",
+        ],
+      },
+      {
+        name: "Swansea / Gower",
+        highlights: [
+          "Plan a Gower day around Rhossili, Three Cliffs Bay, or Oxwich depending on how far you want to walk.",
+          "Use Swansea for marina, indoor options, and an easier city base around the bay.",
+          "This region is best when you want big coastal scenery and a little more choice of day-trip styles.",
+        ],
+      },
+      {
+        name: "Llanelli / Carmarthenshire Coast",
+        highlights: [
+          "The Millennium Coastal Path is ideal for an easy walking or cycling day by the sea.",
+          "Pair the coast path with the wetlands or Pembrey Country Park for a family-friendly day out.",
+          "This stretch feels more open and spacious than resort-focused, which can be a plus for a relaxed trip.",
+        ],
+      },
+    ],
   },
 ];
