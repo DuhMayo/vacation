@@ -466,83 +466,275 @@ export const sightseeingGuides = [
 
 export const diningGuides = {
   "Brixham / Torbay, Devon": [
-    "Rockfish Brixham for seafood on the harbour.",
-    "Simply Fish for another dependable seafood pick in town.",
-    "The Queen's Arms for a classic Brixham pub stop.",
+    {
+      name: "Rockfish Brixham",
+      note: "Seafood on the harbour.",
+      url: "https://www.google.com/maps/search/?api=1&query=Rockfish+Brixham",
+    },
+    {
+      name: "Simply Fish",
+      note: "Another dependable seafood pick in town.",
+      url: "https://www.google.com/maps/search/?api=1&query=Simply+Fish+Brixham",
+    },
+    {
+      name: "The Queen's Arms",
+      note: "A classic Brixham pub stop.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Queen%27s+Arms+Brixham",
+    },
   ],
   "Carbis Bay / St Ives, Cornwall": [
-    "The Gannet in Carbis Bay for a more polished dinner.",
-    "Porthminster Beach Cafe for the beach-view classic in St Ives.",
-    "The Lifeboat Inn for a solid harbour-side pub option.",
+    {
+      name: "The Gannet",
+      note: "A more polished dinner in Carbis Bay.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Gannet+Carbis+Bay",
+    },
+    {
+      name: "Porthminster Beach Cafe",
+      note: "The beach-view classic in St Ives.",
+      url: "https://www.google.com/maps/search/?api=1&query=Porthminster+Beach+Cafe+St+Ives",
+    },
+    {
+      name: "The Lifeboat Inn",
+      note: "A solid harbour-side pub option.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Lifeboat+Inn+St+Ives",
+    },
   ],
   "Charlestown / Duporth, Cornwall": [
-    "The Longstore Charlestown for a popular dinner booking.",
-    "Rashleigh Arms for a pub meal right by the harbour.",
-    "Charlestown has several easy café and drinks stops around the quay if you want a casual evening.",
+    {
+      name: "The Longstore Charlestown",
+      note: "A popular dinner booking.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Longstore+Charlestown",
+    },
+    {
+      name: "Rashleigh Arms",
+      note: "A pub meal right by the harbour.",
+      url: "https://www.google.com/maps/search/?api=1&query=Rashleigh+Arms+Charlestown",
+    },
+    {
+      name: "Charlestown Quay cafes and bars",
+      note: "Casual drinks and easy food around the quay.",
+      url: "https://www.google.com/maps/search/?api=1&query=restaurants+and+bars+Charlestown+Cornwall",
+    },
   ],
   "Cornwall North Coast / Polzeath": [
-    "The Oystercatcher for the best-known pub and restaurant in the village.",
-    "Surfside for casual beachside food and drinks.",
-    "Atlantic Bar & Kitchen for a relaxed post-beach meal.",
+    {
+      name: "The Oystercatcher",
+      note: "The best-known pub and restaurant in the village.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Oystercatcher+Polzeath",
+    },
+    {
+      name: "Surfside",
+      note: "Casual beachside food and drinks.",
+      url: "https://www.google.com/maps/search/?api=1&query=Surfside+Polzeath",
+    },
+    {
+      name: "Atlantic Bar & Kitchen",
+      note: "A relaxed post-beach meal.",
+      url: "https://www.google.com/maps/search/?api=1&query=Atlantic+Bar+and+Kitchen+Polzeath",
+    },
   ],
   "Croyde, Devon": [
-    "New Coast Kitchen for the standout dinner option nearby.",
-    "The Thatch in Croyde or Georgeham for a classic North Devon pub feel.",
-    "Beach Cafe & Sunset Bar Downend for a laid-back beachside stop.",
+    {
+      name: "New Coast Kitchen",
+      note: "The standout dinner option nearby.",
+      url: "https://www.google.com/maps/search/?api=1&query=New+Coast+Kitchen+Croyde",
+    },
+    {
+      name: "The Thatch",
+      note: "A classic North Devon pub feel.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Thatch+Croyde",
+    },
+    {
+      name: "Beach Cafe & Sunset Bar Downend",
+      note: "A laid-back beachside stop.",
+      url: "https://www.google.com/maps/search/?api=1&query=Beach+Cafe+and+Sunset+Bar+Downend+Croyde",
+    },
   ],
   "Llanelli / Carmarthenshire Coast, Wales": [
-    "Cwmcerrig Farmshop & Grill for a reliable local food stop inland.",
-    "The Bryngwyn in Pwll for a local restaurant option near the coast.",
-    "Pembrey Country Inn is a practical nearby pub option if you're exploring that side of the coast.",
+    {
+      name: "Cwmcerrig Farmshop & Grill",
+      note: "A reliable local food stop inland.",
+      url: "https://www.google.com/maps/search/?api=1&query=Cwmcerrig+Farmshop+and+Grill",
+    },
+    {
+      name: "The Bryngwyn",
+      note: "A local restaurant option near the coast.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Bryngwyn+Pwll",
+    },
+    {
+      name: "Pembrey Country Inn",
+      note: "A practical nearby pub option.",
+      url: "https://www.google.com/maps/search/?api=1&query=Pembrey+Country+Inn",
+    },
   ],
   "Looe, Cornwall": [
-    "The Fish Market is one of the better-known restaurant picks in Looe.",
-    "The Jolly Sailor is the classic old West Looe pub choice.",
-    "The Coddy Shack is worth considering if you want a more casual seafood-and-chips meal.",
+    {
+      name: "The Fish Market",
+      note: "One of the better-known restaurant picks in Looe.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Fish+Market+Looe",
+    },
+    {
+      name: "The Jolly Sailor",
+      note: "The classic old West Looe pub choice.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Jolly+Sailor+Looe",
+    },
+    {
+      name: "The Coddy Shack",
+      note: "A casual seafood-and-chips meal.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Coddy+Shack+Looe",
+    },
   ],
   "Newbridge, Cornwall": [
-    "The Fountain Inn in Newbridge is the obvious closest pub stop.",
-    "For more choice, nearby Penzance has stronger dining options for a full evening out.",
-    "Admiral Benbow or Smokey Joe's are often mentioned when people branch into Penzance.",
+    {
+      name: "The Fountain Inn",
+      note: "The obvious closest pub stop in Newbridge.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Fountain+Inn+Newbridge+Cornwall",
+    },
+    {
+      name: "Admiral Benbow",
+      note: "A better-known option if you head into Penzance.",
+      url: "https://www.google.com/maps/search/?api=1&query=Admiral+Benbow+Penzance",
+    },
+    {
+      name: "Smokey Joe's",
+      note: "Another often-mentioned Penzance option.",
+      url: "https://www.google.com/maps/search/?api=1&query=Smokey+Joe%27s+Penzance",
+    },
   ],
   "Plymouth Waterfront, Devon": [
-    "The Waterfront is a straightforward waterside pub choice on the Hoe.",
-    "Harbour Seafood Restaurant is a good Sutton Harbour dinner option.",
-    "The Admiral MacBride is a dependable Barbican pub stop.",
+    {
+      name: "The Waterfront",
+      note: "A straightforward waterside pub choice on the Hoe.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Waterfront+Plymouth+Hoe",
+    },
+    {
+      name: "Harbour Seafood Restaurant",
+      note: "A good Sutton Harbour dinner option.",
+      url: "https://www.google.com/maps/search/?api=1&query=Harbour+Seafood+Restaurant+Plymouth",
+    },
+    {
+      name: "The Admiral MacBride",
+      note: "A dependable Barbican pub stop.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Admiral+MacBride+Plymouth",
+    },
   ],
   "Porthcurno / St Levan, Cornwall": [
-    "The Logan Rock Inn in Treen is the standout nearby pub choice.",
-    "Treen village shop and café is handy for lighter daytime stops.",
-    "For more restaurant choice, most people head back toward Penzance after a Porthcurno day.",
+    {
+      name: "The Logan Rock Inn",
+      note: "The standout nearby pub choice in Treen.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Logan+Rock+Inn+Treen",
+    },
+    {
+      name: "Treen village shop and cafe",
+      note: "Handy for lighter daytime stops.",
+      url: "https://www.google.com/maps/search/?api=1&query=Treen+village+shop+and+cafe",
+    },
+    {
+      name: "Penzance restaurants",
+      note: "Worth browsing if you want more evening options.",
+      url: "https://www.google.com/maps/search/?api=1&query=restaurants+Penzance",
+    },
   ],
   "Porthtowan / Truro, Cornwall": [
-    "The Unicorn on the Beach is the signature Porthtowan pub-and-food stop.",
-    "Porthtowan Beach Cafe is a good casual option by the sand.",
-    "If you head into Truro, Hooked is one of the better-known restaurant picks.",
+    {
+      name: "The Unicorn on the Beach",
+      note: "The signature Porthtowan pub-and-food stop.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Unicorn+on+the+Beach+Porthtowan",
+    },
+    {
+      name: "Porthtowan Beach Cafe",
+      note: "A good casual option by the sand.",
+      url: "https://www.google.com/maps/search/?api=1&query=Porthtowan+Beach+Cafe",
+    },
+    {
+      name: "Hooked",
+      note: "One of the better-known restaurant picks in Truro.",
+      url: "https://www.google.com/maps/search/?api=1&query=Hooked+Truro",
+    },
   ],
   "Saltash / Cotehele, Cornwall": [
-    "The Two Bridges Inn is one of the stronger pub picks around Saltash right now.",
-    "The Ploughboy is another local pub option if you're staying on the Saltash side.",
-    "For more variety, many visitors combine this area with a meal over the water in Plymouth.",
+    {
+      name: "The Two Bridges Inn",
+      note: "One of the stronger pub picks around Saltash.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Two+Bridges+Inn+Saltash",
+    },
+    {
+      name: "The Ploughboy",
+      note: "Another local pub option on the Saltash side.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Ploughboy+Saltash",
+    },
+    {
+      name: "Plymouth waterfront restaurants",
+      note: "A good fallback if you want more variety.",
+      url: "https://www.google.com/maps/search/?api=1&query=waterfront+restaurants+Plymouth",
+    },
   ],
   "Tenby, Pembrokeshire, Wales": [
-    "HARBWR Brewery & Taproom is one of the best-known casual food-and-drink stops in Tenby.",
-    "The Cove is a good seafront-style bar and restaurant option.",
-    "Heywood Marigold is a stronger pick if you want a more dinner-led meal nearby.",
+    {
+      name: "HARBWR Brewery & Taproom",
+      note: "One of the best-known casual food-and-drink stops in Tenby.",
+      url: "https://www.google.com/maps/search/?api=1&query=HARBWR+Brewery+and+Taproom+Tenby",
+    },
+    {
+      name: "The Cove",
+      note: "A good seafront-style bar and restaurant option.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Cove+Tenby",
+    },
+    {
+      name: "Heywood Marigold",
+      note: "A stronger dinner-led meal nearby.",
+      url: "https://www.google.com/maps/search/?api=1&query=Heywood+Marigold+Tenby",
+    },
   ],
   "Washford / Exmoor edge, Somerset": [
-    "The White Horse Inn is the main nearby pub-and-food recommendation in Washford.",
-    "Watchet gives you a few extra harbour-side choices if you want to go out for the evening.",
-    "This area is better for cosy pub meals than destination dining.",
+    {
+      name: "The White Horse Inn",
+      note: "The main nearby pub-and-food recommendation in Washford.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+White+Horse+Inn+Washford",
+    },
+    {
+      name: "Watchet harbour dining",
+      note: "Useful if you want a few extra evening choices.",
+      url: "https://www.google.com/maps/search/?api=1&query=restaurants+Watchet+harbour",
+    },
+    {
+      name: "Washford pubs",
+      note: "Best suited to cosy pub meals rather than destination dining.",
+      url: "https://www.google.com/maps/search/?api=1&query=pubs+Washford+Somerset",
+    },
   ],
   "Westward Ho! / Bideford, Devon": [
-    "The Waterfront Inn is the most obvious seafront pub-and-food stop.",
-    "The Village Inn is a dependable traditional pub option.",
-    "Moran's and The Pig on the Hill are often mentioned when people want a slightly more special meal nearby.",
+    {
+      name: "The Waterfront Inn",
+      note: "The most obvious seafront pub-and-food stop.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Waterfront+Inn+Westward+Ho",
+    },
+    {
+      name: "The Village Inn",
+      note: "A dependable traditional pub option.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Village+Inn+Westward+Ho",
+    },
+    {
+      name: "Moran's or The Pig on the Hill",
+      note: "Good if you want a slightly more special meal nearby.",
+      url: "https://www.google.com/maps/search/?api=1&query=Moran%27s+Bideford",
+    },
   ],
   "Woolacombe, Devon": [
-    "The Beach House is one of the best-known dinner options in Woolacombe.",
-    "Barricane Beach Cafe is the iconic casual stop for a beach day.",
-    "The Red Barn is a handy pub-and-food option close to the centre.",
+    {
+      name: "The Beach House",
+      note: "One of the best-known dinner options in Woolacombe.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Beach+House+Woolacombe",
+    },
+    {
+      name: "Barricane Beach Cafe",
+      note: "The iconic casual stop for a beach day.",
+      url: "https://www.google.com/maps/search/?api=1&query=Barricane+Beach+Cafe+Woolacombe",
+    },
+    {
+      name: "The Red Barn",
+      note: "A handy pub-and-food option close to the centre.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Red+Barn+Woolacombe",
+    },
   ],
 };

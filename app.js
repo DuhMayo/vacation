@@ -155,9 +155,18 @@ function openDetail(slug, options = {}) {
   detailConfidence.textContent = `Address confidence: ${home.addressConfidence}`;
   detailAmenities.textContent = home.amenities;
   detailDining.innerHTML = (diningGuides[home.locationGroup] || [
-    "Ask the group to check Google Maps when you narrow this area down.",
+    {
+      name: "Search nearby places",
+      note: "Open Google Maps and explore the area after you narrow this stay down.",
+      url: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(home.townArea)}`,
+    },
   ])
-    .map((item) => `<p>${item}</p>`)
+    .map(
+      (item) =>
+        `<p><a href="${item.url}" target="_blank" rel="noreferrer">${item.name}</a>${
+          item.note ? `: ${item.note}` : ""
+        }</p>`
+    )
     .join("");
   visitLinkTop.href = home.link;
 

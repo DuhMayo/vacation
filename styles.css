@@ -446,6 +446,16 @@ a {
   margin-top: 8px;
 }
 
+.detail-list a {
+  color: var(--accent-deep);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.detail-list a:hover {
+  text-decoration: underline;
+}
+
 .nav-button:disabled {
   opacity: 0.42;
   cursor: default;
