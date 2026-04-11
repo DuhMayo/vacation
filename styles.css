@@ -420,10 +420,6 @@ a {
   padding: 16px;
 }
 
-.detail-card-wide {
-  grid-column: 1 / -1;
-}
-
 .detail-card h3 {
   margin: 0 0 10px;
   font-size: 0.95rem;
@@ -471,10 +467,6 @@ a {
 
   .detail-grid {
     grid-template-columns: 1fr;
-  }
-
-  .detail-card-wide {
-    grid-column: auto;
   }
 
   .detail-actions {
