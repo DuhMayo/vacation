@@ -327,9 +327,11 @@ a {
 }
 
 .close-detail {
-  position: absolute;
+  position: sticky;
   top: 14px;
-  right: 14px;
+  margin-left: auto;
+  margin-right: 14px;
+  display: block;
   z-index: 2;
   width: 42px;
   height: 42px;
@@ -432,11 +434,15 @@ a {
 
 .detail-list {
   margin: 0;
-  padding-left: 18px;
   color: var(--muted);
 }
 
-.detail-list li + li {
+.detail-list p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.detail-list p + p {
   margin-top: 8px;
 }
 

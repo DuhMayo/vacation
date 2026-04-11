@@ -157,7 +157,7 @@ function openDetail(slug, options = {}) {
   detailDining.innerHTML = (diningGuides[home.locationGroup] || [
     "Ask the group to check Google Maps when you narrow this area down.",
   ])
-    .map((item) => `<li>${item}</li>`)
+    .map((item) => `<p>${item}</p>`)
     .join("");
   visitLinkTop.href = home.link;
 
