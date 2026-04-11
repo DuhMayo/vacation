@@ -75,8 +75,7 @@ a {
 
 .muted,
 .detail-area,
-.detail-card p,
-.detail-location-nav {
+.detail-card p {
   color: var(--muted);
 }
 
@@ -91,7 +90,6 @@ a {
 
 .ghost-button,
 .nav-button,
-.visit-link,
 .close-detail {
   border: 0;
   border-radius: 999px;
@@ -381,8 +379,8 @@ a {
 
 .pill-link {
   text-decoration: none;
-  background: rgba(255, 251, 245, 0.9);
-  color: var(--text);
+  background: linear-gradient(135deg, var(--accent-deep), var(--accent));
+  color: white;
 }
 
 .detail-content {
@@ -408,19 +406,11 @@ a {
   margin-right: 56px;
 }
 
-.detail-location-nav {
-  margin-top: 12px;
-  padding: 12px 14px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(24, 52, 52, 0.08);
-}
-
 .detail-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px;
-  margin-top: 18px;
+  margin-top: 14px;
 }
 
 .detail-card {

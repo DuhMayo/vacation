@@ -24,7 +24,6 @@ const detailPlatform = document.querySelector("#detail-platform");
 const detailGroup = document.querySelector("#detail-group");
 const detailTitle = document.querySelector("#detail-title");
 const detailArea = document.querySelector("#detail-area");
-const detailLocationNav = document.querySelector("#detail-location-nav");
 const detailAddress = document.querySelector("#detail-address");
 const detailConfidence = document.querySelector("#detail-confidence");
 const detailAmenities = document.querySelector("#detail-amenities");
@@ -123,11 +122,6 @@ function syncHash(slug) {
   }
 }
 
-function updateLocationNav(home) {
-  const currentIndex = orderedHomes.findIndex((item) => item.slug === home.slug);
-  detailLocationNav.textContent = `${currentIndex + 1} of ${orderedHomes.length} homes · ${home.locationGroup}`;
-}
-
 function updateNavButtons(home) {
   const currentIndex = orderedHomes.findIndex((item) => item.slug === home.slug);
   prevHomeButton.disabled = currentIndex <= 0;
@@ -158,7 +152,6 @@ function openDetail(slug, options = {}) {
   detailNotes.textContent = home.notes;
   visitLinkTop.href = home.link;
 
-  updateLocationNav(home);
   updateNavButtons(home);
   updateMarkerStates();
   syncHash(slug);
@@ -261,6 +254,14 @@ closeDetailButton.addEventListener("click", closeDetail);
 prevHomeButton.addEventListener("click", () => moveSelection(-1));
 nextHomeButton.addEventListener("click", () => moveSelection(1));
 resetViewButton.addEventListener("click", resetSouthWestView);
+visitLinkTop.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  const href = visitLinkTop.getAttribute("href");
+  if (href && href !== "#") {
+    window.open(href, "_blank", "noopener,noreferrer");
+  }
+});
 menuToggle.addEventListener("click", () => {
   if (menuPanel.classList.contains("is-open")) {
     closeMenu();
