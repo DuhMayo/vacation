@@ -476,11 +476,29 @@ a {
 
 @media (max-width: 640px) {
   body {
-    overflow: hidden;
+    overflow: auto;
   }
 
   .app-shell {
+    height: auto;
+    min-height: 100dvh;
     gap: 10px;
+  }
+
+  .toolbar {
+    border-radius: 24px;
+    padding: 8px;
+  }
+
+  .chip {
+    padding: 10px 12px;
+    font-size: 0.92rem;
+  }
+
+  .map-wrap {
+    display: grid;
+    gap: 10px;
+    min-height: 0;
   }
 
   .hero-bar {
@@ -489,21 +507,52 @@ a {
   }
 
   #map {
+    height: 48dvh;
+    min-height: 320px;
     border-radius: 28px;
   }
 
   .card-rail-shell {
-    left: 8px;
-    right: 8px;
-    bottom: 8px;
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
     padding: 14px;
+    border-radius: 24px;
   }
 
   .home-card {
     grid-template-rows: 142px auto;
   }
 
+  .card-rail-header {
+    align-items: start;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+
+  .card-rail {
+    grid-auto-columns: 76vw;
+    gap: 12px;
+  }
+
   .detail-sheet {
+    width: 100vw;
+    max-height: 100dvh;
     border-radius: 26px 26px 0 0;
+  }
+
+  .detail-image {
+    height: 34dvh;
+    min-height: 240px;
+  }
+
+  .detail-content {
+    padding: 16px;
+  }
+
+  .close-detail {
+    top: 12px;
+    right: 12px;
   }
 }

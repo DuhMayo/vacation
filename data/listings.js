@@ -37,7 +37,7 @@ export const homes = [
     link: "https://www.hoseasons.co.uk/cottages/st-ives-resort-villa-79-uk48793?adult=5&child=0&infant=0&pets=0&range=0&nights=7&accommodationType=cottages&placesId=38946&regionName=South+West+England&start=01-06-2026&index=search&accommodationTypes=&features=ent_hottubprivate%2Cent_luxurycollection%2Cent_wifiac&siteFeatures=&page=1&sort=recommended&displayMode=LIST&bedrooms=threebed&bathrooms=twobath&newflex=true",
     lat: 50.1987,
     lng: -5.4664,
-    image: null,
+    image: "./assets/photos/st-ives-resort-villa-79.png",
   },
   {
     slug: "sea-breeze-interhome",
@@ -108,7 +108,7 @@ export const homes = [
     link: "https://www.holidaycottages.co.uk/cottage/oc-22541-windrush?driver=wishlist&n=7",
     lat: 51.1298,
     lng: -4.2375,
-    image: null,
+    image: "./assets/photos/windrush.png",
   },
   {
     slug: "gower-outlook-penthouse",
@@ -179,7 +179,7 @@ export const homes = [
     link: "https://www.holidaycottages.co.uk/cottage/oc-23348-the-old-chapel?driver=wishlist&n=7",
     lat: 50.1208,
     lng: -5.5665,
-    image: null,
+    image: "./assets/photos/old-chapel.png",
   },
   {
     slug: "admirals-lookout",
@@ -214,7 +214,7 @@ export const homes = [
     link: "https://www.holidaycottages.co.uk/cottage/oc-27515-the-beach-house-porthcurno?driver=wishlist&n=7",
     lat: 50.0432,
     lng: -5.6493,
-    image: null,
+    image: "./assets/photos/beach-house-porthcurno.png",
   },
   {
     slug: "heather-rosehill",
@@ -231,7 +231,7 @@ export const homes = [
     link: "https://www.holidaycottages.co.uk/cottage/oc-38913-heather-at-rosehill-lodges?driver=wishlist&n=7",
     lat: 50.2937,
     lng: -5.2287,
-    image: null,
+    image: "./assets/photos/heather-rosehill.png",
   },
   {
     slug: "malt-house",
@@ -302,7 +302,7 @@ export const homes = [
     link: "https://www.holidaycottages.co.uk/cottage/oc-36830-ocean-bay?driver=wishlist&n=7",
     lat: 51.0414,
     lng: -4.2411,
-    image: null,
+    image: "./assets/photos/ocean-bay.png",
   },
   {
     slug: "aysha-house",
@@ -337,6 +337,6 @@ export const homes = [
     link: "https://www.holidaycottages.co.uk/cottage/oc-691-1-devon-beach-court?driver=wishlist&n=7",
     lat: 51.1715,
     lng: -4.2122,
-    image: null,
+    image: "./assets/photos/devon-beach-court.png",
   },
 ];
