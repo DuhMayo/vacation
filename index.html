@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Baby Trip Map</title>
+    <meta
+      name="description"
+      content="A mobile-friendly vacation shortlist map for Cornwall, Devon, and nearby options."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero-bar">
+        <div>
+          <p class="eyebrow">June 1 to June 8, 2026</p>
+          <h1>Baby Trip Map</h1>
+          <p class="hero-copy">
+            Tap a marker or card to compare homes, view local amenities, and jump
+            to each host listing.
+          </p>
+        </div>
+        <button id="reset-view" class="ghost-button" type="button">
+          Reset Cornwall / Devon View
+        </button>
+      </header>
+
+      <section class="toolbar" aria-label="Location filters">
+        <div id="filter-chips" class="filter-chips"></div>
+      </section>
+
+      <main class="map-wrap">
+        <div id="map" aria-label="Vacation map"></div>
+
+        <section class="card-rail-shell">
+          <div class="card-rail-header">
+            <div>
+              <p class="eyebrow">Homes</p>
+              <h2 id="rail-title">All shortlisted stays</h2>
+            </div>
+            <p id="rail-count" class="rail-count"></p>
+          </div>
+          <div id="card-rail" class="card-rail" aria-label="Property cards"></div>
+        </section>
+      </main>
+    </div>
+
+    <aside
+      id="detail-panel"
+      class="detail-panel"
+      aria-hidden="true"
+      aria-label="Property details"
+    >
+      <div class="detail-scrim" data-close-detail="true"></div>
+      <section class="detail-sheet">
+        <button
+          id="close-detail"
+          class="close-detail"
+          type="button"
+          aria-label="Close home view"
+        >
+          ×
+        </button>
+
+        <div class="detail-media-wrap">
+          <img id="detail-image" class="detail-image" alt="" />
+          <div class="detail-badges">
+            <span id="detail-platform" class="pill"></span>
+            <span class="pill pill-soft">Approximate map pin</span>
+          </div>
+        </div>
+
+        <div class="detail-content">
+          <div class="detail-head">
+            <div>
+              <p id="detail-group" class="eyebrow"></p>
+              <h2 id="detail-title"></h2>
+            </div>
+            <p id="detail-area" class="detail-area"></p>
+          </div>
+
+          <div class="detail-grid">
+            <article class="detail-card">
+              <h3>Address</h3>
+              <p id="detail-address"></p>
+              <p id="detail-confidence" class="muted"></p>
+            </article>
+
+            <article class="detail-card">
+              <h3>Nearby Amenities</h3>
+              <p id="detail-amenities"></p>
+            </article>
+
+            <article class="detail-card detail-card-wide">
+              <h3>Notes</h3>
+              <p id="detail-notes"></p>
+            </article>
+          </div>
+
+          <div class="detail-actions">
+            <button id="prev-home" class="nav-button" type="button">
+              ← Previous
+            </button>
+            <a
+              id="visit-link"
+              class="visit-link"
+              href="#"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Visit host website
+            </a>
+            <button id="next-home" class="nav-button" type="button">
+              Next →
+            </button>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
