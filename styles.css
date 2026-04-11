@@ -107,8 +107,10 @@ a {
 }
 
 .ghost-button {
-  padding: 11px 14px;
+  padding: 9px 12px;
   white-space: nowrap;
+  font-size: 0.9rem;
+  line-height: 1.1;
 }
 
 .reset-button {
@@ -377,6 +379,12 @@ a {
   color: var(--text);
 }
 
+.pill-link {
+  text-decoration: none;
+  background: rgba(255, 251, 245, 0.9);
+  color: var(--text);
+}
+
 .detail-content {
   padding: 18px;
 }
@@ -436,22 +444,6 @@ a {
   line-height: 1.55;
 }
 
-.detail-actions {
-  display: block;
-  margin-top: 18px;
-}
-
-.visit-link {
-  padding: 14px 16px;
-  text-align: center;
-}
-
-.visit-link {
-  text-decoration: none;
-  color: white;
-  background: linear-gradient(135deg, var(--accent-deep), var(--accent));
-}
-
 .nav-button:disabled {
   opacity: 0.42;
   cursor: default;
@@ -459,7 +451,7 @@ a {
 
 .ghost-button:hover,
 .nav-button:hover:not(:disabled),
-.visit-link:hover,
+.pill-link:hover,
 .close-detail:hover {
   transform: translateY(-1px);
 }
@@ -528,8 +520,8 @@ a {
   .reset-button {
     top: calc(10px + var(--safe-top));
     right: 10px;
-    padding: 10px 12px;
-    font-size: 0.92rem;
+    padding: 8px 10px;
+    font-size: 0.84rem;
   }
 
   .menu-sheet {

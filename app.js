@@ -29,7 +29,7 @@ const detailAddress = document.querySelector("#detail-address");
 const detailConfidence = document.querySelector("#detail-confidence");
 const detailAmenities = document.querySelector("#detail-amenities");
 const detailNotes = document.querySelector("#detail-notes");
-const visitLink = document.querySelector("#visit-link");
+const visitLinkTop = document.querySelector("#visit-link-top");
 const prevHomeButton = document.querySelector("#prev-home");
 const nextHomeButton = document.querySelector("#next-home");
 const resetViewButton = document.querySelector("#reset-view");
@@ -156,7 +156,7 @@ function openDetail(slug, options = {}) {
   detailConfidence.textContent = `Address confidence: ${home.addressConfidence}`;
   detailAmenities.textContent = home.amenities;
   detailNotes.textContent = home.notes;
-  visitLink.href = home.link;
+  visitLinkTop.href = home.link;
 
   updateLocationNav(home);
   updateNavButtons(home);
