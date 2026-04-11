@@ -430,6 +430,16 @@ a {
   line-height: 1.55;
 }
 
+.detail-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+.detail-list li + li {
+  margin-top: 8px;
+}
+
 .nav-button:disabled {
   opacity: 0.42;
   cursor: default;

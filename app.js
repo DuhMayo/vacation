@@ -1,4 +1,9 @@
-import { homes, initialMapView, sightseeingGuides } from "./data/listings.js";
+import {
+  homes,
+  initialMapView,
+  sightseeingGuides,
+  diningGuides,
+} from "./data/listings.js";
 
 const map = L.map("map", {
   zoomControl: false,
@@ -27,6 +32,7 @@ const detailArea = document.querySelector("#detail-area");
 const detailAddress = document.querySelector("#detail-address");
 const detailConfidence = document.querySelector("#detail-confidence");
 const detailAmenities = document.querySelector("#detail-amenities");
+const detailDining = document.querySelector("#detail-dining");
 const visitLinkTop = document.querySelector("#visit-link-top");
 const prevHomeButton = document.querySelector("#prev-home");
 const nextHomeButton = document.querySelector("#next-home");
@@ -148,6 +154,11 @@ function openDetail(slug, options = {}) {
   detailAddress.textContent = home.address;
   detailConfidence.textContent = `Address confidence: ${home.addressConfidence}`;
   detailAmenities.textContent = home.amenities;
+  detailDining.innerHTML = (diningGuides[home.locationGroup] || [
+    "Ask the group to check Google Maps when you narrow this area down.",
+  ])
+    .map((item) => `<li>${item}</li>`)
+    .join("");
   visitLinkTop.href = home.link;
 
   updateNavButtons(home);

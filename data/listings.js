@@ -463,3 +463,86 @@ export const sightseeingGuides = [
     ],
   },
 ];
+
+export const diningGuides = {
+  "Brixham / Torbay, Devon": [
+    "Rockfish Brixham for seafood on the harbour.",
+    "Simply Fish for another dependable seafood pick in town.",
+    "The Queen's Arms for a classic Brixham pub stop.",
+  ],
+  "Carbis Bay / St Ives, Cornwall": [
+    "The Gannet in Carbis Bay for a more polished dinner.",
+    "Porthminster Beach Cafe for the beach-view classic in St Ives.",
+    "The Lifeboat Inn for a solid harbour-side pub option.",
+  ],
+  "Charlestown / Duporth, Cornwall": [
+    "The Longstore Charlestown for a popular dinner booking.",
+    "Rashleigh Arms for a pub meal right by the harbour.",
+    "Charlestown has several easy café and drinks stops around the quay if you want a casual evening.",
+  ],
+  "Cornwall North Coast / Polzeath": [
+    "The Oystercatcher for the best-known pub and restaurant in the village.",
+    "Surfside for casual beachside food and drinks.",
+    "Atlantic Bar & Kitchen for a relaxed post-beach meal.",
+  ],
+  "Croyde, Devon": [
+    "New Coast Kitchen for the standout dinner option nearby.",
+    "The Thatch in Croyde or Georgeham for a classic North Devon pub feel.",
+    "Beach Cafe & Sunset Bar Downend for a laid-back beachside stop.",
+  ],
+  "Llanelli / Carmarthenshire Coast, Wales": [
+    "Cwmcerrig Farmshop & Grill for a reliable local food stop inland.",
+    "The Bryngwyn in Pwll for a local restaurant option near the coast.",
+    "Pembrey Country Inn is a practical nearby pub option if you're exploring that side of the coast.",
+  ],
+  "Looe, Cornwall": [
+    "The Fish Market is one of the better-known restaurant picks in Looe.",
+    "The Jolly Sailor is the classic old West Looe pub choice.",
+    "The Coddy Shack is worth considering if you want a more casual seafood-and-chips meal.",
+  ],
+  "Newbridge, Cornwall": [
+    "The Fountain Inn in Newbridge is the obvious closest pub stop.",
+    "For more choice, nearby Penzance has stronger dining options for a full evening out.",
+    "Admiral Benbow or Smokey Joe's are often mentioned when people branch into Penzance.",
+  ],
+  "Plymouth Waterfront, Devon": [
+    "The Waterfront is a straightforward waterside pub choice on the Hoe.",
+    "Harbour Seafood Restaurant is a good Sutton Harbour dinner option.",
+    "The Admiral MacBride is a dependable Barbican pub stop.",
+  ],
+  "Porthcurno / St Levan, Cornwall": [
+    "The Logan Rock Inn in Treen is the standout nearby pub choice.",
+    "Treen village shop and café is handy for lighter daytime stops.",
+    "For more restaurant choice, most people head back toward Penzance after a Porthcurno day.",
+  ],
+  "Porthtowan / Truro, Cornwall": [
+    "The Unicorn on the Beach is the signature Porthtowan pub-and-food stop.",
+    "Porthtowan Beach Cafe is a good casual option by the sand.",
+    "If you head into Truro, Hooked is one of the better-known restaurant picks.",
+  ],
+  "Saltash / Cotehele, Cornwall": [
+    "The Two Bridges Inn is one of the stronger pub picks around Saltash right now.",
+    "The Ploughboy is another local pub option if you're staying on the Saltash side.",
+    "For more variety, many visitors combine this area with a meal over the water in Plymouth.",
+  ],
+  "Tenby, Pembrokeshire, Wales": [
+    "HARBWR Brewery & Taproom is one of the best-known casual food-and-drink stops in Tenby.",
+    "The Cove is a good seafront-style bar and restaurant option.",
+    "Heywood Marigold is a stronger pick if you want a more dinner-led meal nearby.",
+  ],
+  "Washford / Exmoor edge, Somerset": [
+    "The White Horse Inn is the main nearby pub-and-food recommendation in Washford.",
+    "Watchet gives you a few extra harbour-side choices if you want to go out for the evening.",
+    "This area is better for cosy pub meals than destination dining.",
+  ],
+  "Westward Ho! / Bideford, Devon": [
+    "The Waterfront Inn is the most obvious seafront pub-and-food stop.",
+    "The Village Inn is a dependable traditional pub option.",
+    "Moran's and The Pig on the Hill are often mentioned when people want a slightly more special meal nearby.",
+  ],
+  "Woolacombe, Devon": [
+    "The Beach House is one of the best-known dinner options in Woolacombe.",
+    "Barricane Beach Cafe is the iconic casual stop for a beach day.",
+    "The Red Barn is a handy pub-and-food option close to the centre.",
+  ],
+};
