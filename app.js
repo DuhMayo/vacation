@@ -59,7 +59,6 @@ const orderedHomes = [...homes].sort((a, b) =>
 );
 
 let activeSlug = null;
-let activeTouchStartX = null;
 let activeRegion = null;
 let regionMapInstance = null;
 let regionPoiMarkers = [];
@@ -449,23 +448,6 @@ document.addEventListener("keydown", (event) => {
   if (!detailPanel.classList.contains("is-open")) return;
   if (event.key === "ArrowLeft") moveSelection(-1);
   if (event.key === "ArrowRight") moveSelection(1);
-});
-
-detailPanel.addEventListener("touchstart", (event) => {
-  activeTouchStartX = event.changedTouches[0].clientX;
-});
-
-detailPanel.addEventListener("touchcancel", () => {
-  activeTouchStartX = null;
-});
-
-detailPanel.addEventListener("touchend", (event) => {
-  if (activeTouchStartX === null) return;
-  const deltaX = event.changedTouches[0].clientX - activeTouchStartX;
-  activeTouchStartX = null;
-  if (Math.abs(deltaX) < 44) return;
-  if (deltaX < 0) moveSelection(1);
-  if (deltaX > 0) moveSelection(-1);
 });
 
 window.addEventListener("hashchange", () => {

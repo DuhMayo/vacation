@@ -650,10 +650,11 @@ a {
   text-align: left;
 }
 
-.detail-top-actions {
+.detail-nav {
   display: flex;
-  gap: 10px;
-  margin-right: 56px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
 }
 
 .detail-grid {
@@ -751,20 +752,10 @@ a {
     max-width: min(320px, calc(100vw - 202px));
   }
 
-  .detail-head {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
   .detail-area {
     margin: 0;
     max-width: none;
     text-align: left;
-  }
-
-  .detail-top-actions {
-    margin-right: 56px;
-    flex-wrap: wrap;
   }
 
   .detail-grid {
@@ -857,10 +848,6 @@ a {
 
   .detail-content {
     padding: 16px;
-  }
-
-  .detail-top-actions {
-    margin-right: 46px;
   }
 
   .nav-button {
