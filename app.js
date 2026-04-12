@@ -49,6 +49,7 @@ const regionDayTrips = document.querySelector("#region-day-trips");
 const regionThings = document.querySelector("#region-things");
 const regionTowns = document.querySelector("#region-towns");
 const regionFocusMap = document.querySelector("#region-focus-map");
+const regionItinerary = document.querySelector("#region-itinerary");
 const orderedHomes = [...homes].sort((a, b) =>
   `${a.locationGroup} ${a.name}`.localeCompare(`${b.locationGroup} ${b.name}`)
 );
@@ -57,6 +58,7 @@ let activeSlug = null;
 let activeTouchStartX = null;
 let activeRegion = null;
 let regionMapInstance = null;
+let regionPoiMarkers = [];
 const markerRegistry = new Map();
 
 function createFallbackImage(home) {
@@ -228,6 +230,9 @@ function openRegion(regionName) {
   const region = sightseeingGuides.find((item) => item.region === regionName);
   if (!region) return;
 
+  // Close the menu first so the panel is fully visible on mobile
+  closeMenu();
+
   activeRegion = region;
   regionTitle.textContent = region.region;
   regionSummary.textContent = region.summary || "";
@@ -236,6 +241,20 @@ function openRegion(regionName) {
     .join("");
   regionThings.innerHTML = (region.thingsToDo || [])
     .map((item) => `<p>${item}</p>`)
+    .join("");
+  regionItinerary.innerHTML = (region.itinerary || [])
+    .map(
+      (item, i) => `
+        <div class="itinerary-item">
+          <div class="itinerary-num">${i + 1}</div>
+          <div class="itinerary-body">
+            <p class="itinerary-slot">${item.slot}</p>
+            <p class="itinerary-place">${item.place}</p>
+            <p class="itinerary-desc">${item.description}</p>
+          </div>
+        </div>
+      `
+    )
     .join("");
   regionTowns.innerHTML = (region.towns || [])
     .map(
@@ -266,6 +285,28 @@ function openRegion(regionName) {
         attribution: "&copy; OpenStreetMap contributors",
       }).addTo(regionMapInstance);
     }
+
+    // Swap POI markers for the newly selected region
+    regionPoiMarkers.forEach((m) => m.remove());
+    regionPoiMarkers = [];
+    (region.itinerary || []).forEach((item, i) => {
+      if (!item.lat || !item.lng) return;
+      const marker = L.marker([item.lat, item.lng], {
+        icon: L.divIcon({
+          className: "",
+          html: `<div class="region-poi-marker">${i + 1}</div>`,
+          iconSize: [26, 26],
+          iconAnchor: [13, 13],
+        }),
+        title: item.place,
+      })
+        .bindPopup(
+          `<strong>${item.place}</strong><br><span style="font-size:0.82em;color:#607670">${item.slot}</span>`
+        )
+        .addTo(regionMapInstance);
+      regionPoiMarkers.push(marker);
+    });
+
     regionMapInstance.invalidateSize();
     regionMapInstance.setView(region.focus.center, region.focus.zoom);
   }, 240);

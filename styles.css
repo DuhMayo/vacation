@@ -235,13 +235,19 @@ a {
   letter-spacing: -0.03em;
 }
 
-.menu-close {
+.menu-close-row {
   position: sticky;
   top: 14px;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
   margin-top: 14px;
-  margin-left: auto;
-  margin-right: 14px;
-  display: block;
+}
+
+.menu-close {
+  pointer-events: auto;
+  flex-shrink: 0;
   width: 42px;
   height: 42px;
   border: 0;
@@ -251,7 +257,6 @@ a {
   color: white;
   background: rgba(12, 33, 36, 0.74);
   cursor: pointer;
-  z-index: 2;
 }
 
 .guide-list {
@@ -417,6 +422,84 @@ a {
 .region-map .leaflet-top.leaflet-right {
   top: 10px;
   right: 10px;
+}
+
+.region-poi-marker {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent-deep), var(--accent));
+  border: 2px solid white;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.28);
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Manrope", sans-serif;
+}
+
+.region-itinerary {
+  display: grid;
+  gap: 0;
+}
+
+.itinerary-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 0;
+}
+
+.itinerary-item + .itinerary-item {
+  border-top: 1px solid var(--line);
+}
+
+.itinerary-item:first-child {
+  padding-top: 4px;
+}
+
+.itinerary-num {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent-deep), var(--accent));
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.itinerary-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.itinerary-slot {
+  margin: 0;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--accent-deep);
+}
+
+.itinerary-place {
+  margin: 3px 0 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.itinerary-desc {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
 }
 
 .region-grid {
@@ -664,6 +747,14 @@ a {
 @media (max-width: 640px) {
   body {
     overflow: hidden;
+  }
+
+  .region-map {
+    height: 200px;
+  }
+
+  .region-card h3 {
+    font-size: 0.95rem;
   }
 
   .hero-bar {

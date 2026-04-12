@@ -58,14 +58,16 @@
     <aside id="menu-panel" class="menu-panel" aria-hidden="true">
       <div class="menu-scrim" data-close-menu="true"></div>
       <section class="menu-sheet">
-        <button
-          id="close-menu"
-          class="menu-close"
-          type="button"
-          aria-label="Close sightseeing guide"
-        >
-          ×
-        </button>
+        <div class="menu-close-row">
+          <button
+            id="close-menu"
+            class="menu-close"
+            type="button"
+            aria-label="Close sightseeing guide"
+          >
+            ×
+          </button>
+        </div>
 
         <div class="menu-head">
           <p class="eyebrow">Sightseeing Guide</p>
@@ -111,6 +113,11 @@
             <article class="region-card">
               <h3>Things To Do</h3>
               <div id="region-things" class="region-list"></div>
+            </article>
+
+            <article class="region-card region-card-wide">
+              <h3>Suggested Itinerary</h3>
+              <div id="region-itinerary" class="region-itinerary"></div>
             </article>
 
             <article class="region-card region-card-wide">
