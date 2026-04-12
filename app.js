@@ -56,6 +56,7 @@ const orderedHomes = [...homes].sort((a, b) =>
 let activeSlug = null;
 let activeTouchStartX = null;
 let activeRegion = null;
+let regionMapInstance = null;
 const markerRegistry = new Map();
 
 function createFallbackImage(home) {
@@ -251,6 +252,23 @@ function openRegion(regionName) {
 
   regionPanel.classList.add("is-open");
   regionPanel.setAttribute("aria-hidden", "false");
+
+  // Initialize the mini-map lazily; invalidate size after the slide-in transition (220ms)
+  setTimeout(() => {
+    if (!regionMapInstance) {
+      regionMapInstance = L.map("region-map", {
+        zoomControl: true,
+        attributionControl: true,
+        tap: true,
+      });
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: "&copy; OpenStreetMap contributors",
+      }).addTo(regionMapInstance);
+    }
+    regionMapInstance.invalidateSize();
+    regionMapInstance.setView(region.focus.center, region.focus.zoom);
+  }, 240);
 }
 
 function closeRegion() {

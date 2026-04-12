@@ -405,11 +405,25 @@ a {
   max-width: 38rem;
 }
 
+.region-map {
+  height: 260px;
+  margin-top: 18px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 18px rgba(13, 34, 39, 0.1);
+}
+
+.region-map .leaflet-top.leaflet-right {
+  top: 10px;
+  right: 10px;
+}
+
 .region-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px;
-  margin-top: 18px;
+  margin-top: 14px;
 }
 
 .region-card {
