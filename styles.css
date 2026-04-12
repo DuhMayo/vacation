@@ -45,7 +45,7 @@ a {
 .hero-bar {
   position: absolute;
   top: calc(12px + var(--safe-top));
-  left: 12px;
+  left: 72px;
   z-index: 900;
   display: flex;
   gap: 12px;
