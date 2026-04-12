@@ -21,6 +21,11 @@ export const homes = [
     lng: -3.5166,
     image:
       "https://a0.muscache.com/im/pictures/prohost-api/Hosting-717240087897408681/original/8cacb7f2-76f4-41bc-a495-cf89d50c0108.jpeg?im_w=720&width=720&quality=70&auto=webp",
+    parking: {
+      spaces: "1",
+      type: "On-site",
+      notes: "Large private garage with roller shutter door + EV charging point (pay-to-use via Voltshare app). Additional unrestricted street parking nearby not guaranteed. Nearest paid car parks 4–13 min walk.",
+    },
   },
   {
     slug: "st-ives-resort-villa-79",
@@ -38,6 +43,11 @@ export const homes = [
     lat: 50.1987,
     lng: -5.4664,
     image: "./assets/photos/st-ives-resort-villa-79.png",
+    parking: {
+      spaces: "1",
+      type: "On-site",
+      notes: "Private parking for 1 car included.",
+    },
   },
   {
     slug: "sea-breeze-interhome",
@@ -56,6 +66,11 @@ export const homes = [
     lng: -4.7898,
     image:
       "https://a0.muscache.com/im/pictures/prohost-api/Hosting-899231635865383398/original/babe96d5-89c9-49bf-a49e-3ba53894fb7b.jpeg?im_w=720&width=720&quality=70&auto=webp",
+    parking: {
+      spaces: "1",
+      type: "On-site",
+      notes: "Assigned parking space #14. Free parking on premises.",
+    },
   },
   {
     slug: "stunning-sea-view-charlestown",
@@ -74,6 +89,11 @@ export const homes = [
     lng: -4.7733,
     image:
       "https://a0.muscache.com/im/pictures/hosting/Hosting-1639313213625421583/original/6ad1f298-f11b-4230-89cd-57e6f4d0eb35.jpeg?im_w=720&width=720&quality=70&auto=webp",
+    parking: {
+      spaces: "3",
+      type: "On-site",
+      notes: "Parking available at the property for up to 3 cars.",
+    },
   },
   {
     slug: "seamay",
@@ -92,6 +112,11 @@ export const homes = [
     lng: -4.9185,
     image:
       "https://images-cdn.sykesassets.co.uk/images/property_images/600x450/1164713/sc_1730281692_1164713_38.jpeg?access=3914T3864T840",
+    parking: {
+      spaces: "2",
+      type: "On-site",
+      notes: "Private driveway parking for 2 cars.",
+    },
   },
   {
     slug: "windrush",
@@ -109,6 +134,11 @@ export const homes = [
     lat: 51.1298,
     lng: -4.2375,
     image: "./assets/photos/windrush.png",
+    parking: {
+      spaces: "Not specified",
+      type: "On-site",
+      notes: "Parking onsite listed as facility. No specific space count given.",
+    },
   },
   {
     slug: "gower-outlook-penthouse",
@@ -128,6 +158,11 @@ export const homes = [
     lng: -4.1376,
     image:
       "https://a0.muscache.com/im/pictures/miso/Hosting-777296134839080294/original/319dfe01-6ecf-4880-a77f-42bc90c04fcd.jpeg?im_w=720&width=720&quality=70&auto=webp",
+    parking: {
+      spaces: "1",
+      type: "On-site",
+      notes: "Free parking on premises – 1 space.",
+    },
   },
   {
     slug: "sea-escape",
@@ -145,6 +180,11 @@ export const homes = [
     lng: -4.4609,
     image:
       "https://a0.muscache.com/im/pictures/miso/Hosting-1442668671501768546/original/720ee918-8d28-4686-be08-672e27709a08.jpeg?im_w=720&width=720&quality=70&auto=webp",
+    parking: {
+      spaces: "Not specified",
+      type: "On-site",
+      notes: "Free parking on premises. No specific space count given.",
+    },
   },
   {
     slug: "river-view",
@@ -163,6 +203,11 @@ export const homes = [
     lng: -4.4551,
     image:
       "https://a0.muscache.com/im/pictures/prohost-api/Hosting-1618756472712135457/original/df68d247-71b6-418b-a7fa-14842e3d8083.jpeg?im_w=720&width=720&quality=70&auto=webp",
+    parking: {
+      spaces: "2",
+      type: "On-site",
+      notes: "Free parking on premises – 2 spaces. EV charger also available.",
+    },
   },
   {
     slug: "old-chapel",
@@ -180,6 +225,11 @@ export const homes = [
     lat: 50.1208,
     lng: -5.5665,
     image: "./assets/photos/old-chapel.png",
+    parking: {
+      spaces: "Not specified",
+      type: "On-site",
+      notes: "Parking onsite listed as facility. No specific space count given.",
+    },
   },
   {
     slug: "admirals-lookout",
@@ -198,6 +248,11 @@ export const homes = [
     lng: -4.1387,
     image:
       "https://a0.muscache.com/im/pictures/prohost-api/Hosting-1131223584455352480/original/ab854b0c-1685-4aab-abd7-3a2ac083fffc.jpeg?im_w=720&width=720&quality=70&auto=webp",
+    parking: {
+      spaces: "Not specified",
+      type: "On-site",
+      notes: "Free parking on premises. No specific space count given.",
+    },
   },
   {
     slug: "beach-house-porthcurno",
@@ -215,6 +270,11 @@ export const homes = [
     lat: 50.0432,
     lng: -5.6493,
     image: "./assets/photos/beach-house-porthcurno.png",
+    parking: {
+      spaces: "Not specified",
+      type: "On-site",
+      notes: "Parking onsite listed as facility. No specific space count given.",
+    },
   },
   {
     slug: "heather-rosehill",
@@ -232,6 +292,11 @@ export const homes = [
     lat: 50.2937,
     lng: -5.2287,
     image: "./assets/photos/heather-rosehill.png",
+    parking: {
+      spaces: "Not specified",
+      type: "On-site",
+      notes: "Parking onsite listed as facility. No specific space count given.",
+    },
   },
   {
     slug: "malt-house",
@@ -250,6 +315,11 @@ export const homes = [
     lng: -4.2239,
     image:
       "https://nt.global.ssl.fastly.net/binaries/content/gallery/website/holidays/library/cornwall/malt-house/malt-house-cotehele---cottage-in-spring.jpg?auto=webp&width=1200&crop=16:9",
+    parking: {
+      spaces: "1",
+      type: "On-site",
+      notes: "Parking for 1 car in front of the arch leading to the cottage's front door.",
+    },
   },
   {
     slug: "ty-cyfoes",
@@ -268,6 +338,11 @@ export const homes = [
     lng: -4.7001,
     image:
       "https://a0.muscache.com/im/pictures/prohost-api/Hosting-1260697240114904516/original/33cc8bfc-d890-4e58-bd17-317de7da114c.jpeg?im_w=720&width=720&quality=70&auto=webp",
+    parking: {
+      spaces: "Not specified",
+      type: "On-site",
+      notes: "Free parking on premises. No specific space count given.",
+    },
   },
   {
     slug: "saint-pancras-chapel",
@@ -286,6 +361,11 @@ export const homes = [
     lng: -3.3644,
     image:
       "https://a0.muscache.com/im/pictures/prohost-api/Hosting-955940949761911832/original/41d0c990-6d3d-4021-aa96-7fb5a116cc59.jpeg?im_w=720&width=720&quality=70&auto=webp",
+    parking: {
+      spaces: "Not specified",
+      type: "On-site",
+      notes: "Free parking on premises. No specific space count given.",
+    },
   },
   {
     slug: "ocean-bay",
@@ -303,6 +383,11 @@ export const homes = [
     lat: 51.0414,
     lng: -4.2411,
     image: "./assets/photos/ocean-bay.png",
+    parking: {
+      spaces: "Not specified",
+      type: "On-site",
+      notes: "Parking onsite listed as facility. No specific space count given.",
+    },
   },
   {
     slug: "aysha-house",
@@ -321,6 +406,11 @@ export const homes = [
     lng: -4.2382,
     image:
       "https://a0.muscache.com/im/pictures/miso/Hosting-1099195158448105512/original/6a882076-d623-489a-b755-b0771e01e718.jpeg?im_w=720&width=720&quality=70&auto=webp",
+    parking: {
+      spaces: "1",
+      type: "On-site",
+      notes: "Free driveway parking on premises – 1 space.",
+    },
   },
   {
     slug: "devon-beach-court",
@@ -338,6 +428,11 @@ export const homes = [
     lat: 51.1715,
     lng: -4.2122,
     image: "./assets/photos/devon-beach-court.png",
+    parking: {
+      spaces: "Not specified",
+      type: "On-site",
+      notes: "Parking onsite listed as facility. No specific space count given.",
+    },
   },
 ];
 

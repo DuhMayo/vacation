@@ -32,6 +32,7 @@ const detailArea = document.querySelector("#detail-area");
 const detailAddress = document.querySelector("#detail-address");
 const detailConfidence = document.querySelector("#detail-confidence");
 const detailAmenities = document.querySelector("#detail-amenities");
+const detailParking = document.querySelector("#detail-parking");
 const detailDining = document.querySelector("#detail-dining");
 const visitLinkTop = document.querySelector("#visit-link-top");
 const prevHomeButton = document.querySelector("#prev-home");
@@ -182,6 +183,16 @@ function openDetail(slug, options = {}) {
   detailAddress.textContent = home.address;
   detailConfidence.textContent = `Address confidence: ${home.addressConfidence}`;
   detailAmenities.textContent = home.amenities;
+  if (home.parking) {
+    const { spaces, type, notes } = home.parking;
+    const spacesLabel =
+      spaces === "Not specified"
+        ? "Spaces: not specified"
+        : `${spaces} space${spaces !== "1" ? "s" : ""} · ${type}`;
+    detailParking.innerHTML = `<p><strong>${spacesLabel}</strong></p><p>${notes}</p>`;
+  } else {
+    detailParking.innerHTML = "<p>No parking info available.</p>";
+  }
   detailDining.innerHTML = (diningGuides[home.locationGroup] || [
     {
       name: "Search nearby places",
