@@ -68,6 +68,7 @@ a {
 .hero-bar h1 {
   font-size: clamp(1.45rem, 3.2vw, 2.25rem);
   line-height: 1.02;
+  text-align: center;
 }
 
 .muted,
@@ -113,6 +114,11 @@ a {
   top: calc(12px + var(--safe-top));
   right: 12px;
   z-index: 910;
+}
+
+.leaflet-top.leaflet-right {
+  top: calc(58px + var(--safe-top));
+  right: 12px;
 }
 
 .menu-button {
