@@ -225,11 +225,8 @@ a {
 }
 
 .menu-head {
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
-  gap: 12px;
   margin-bottom: 18px;
+  padding-top: 4px;
 }
 
 .menu-head h2 {
@@ -240,13 +237,20 @@ a {
 
 .menu-close {
   position: sticky;
-  top: 0;
-  width: 40px;
-  height: 40px;
-  font-size: 1.8rem;
+  top: 14px;
+  margin-top: 14px;
+  margin-left: auto;
+  margin-right: 14px;
+  display: block;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 999px;
+  font-size: 1.9rem;
   line-height: 1;
   color: white;
   background: rgba(12, 33, 36, 0.74);
+  cursor: pointer;
   z-index: 2;
 }
 
