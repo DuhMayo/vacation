@@ -98,14 +98,25 @@ function getHomeBySlug(slug) {
   return homes.find((home) => home.slug === slug);
 }
 
-function markerHtml(isActive = false) {
-  return `<div class="marker-badge${isActive ? " is-active" : ""}"></div>`;
-}
+const PHOTO_ZOOM_THRESHOLD = 12;
 
-function markerIcon(isActive = false) {
+function markerIcon(isActive = false, home = null) {
+  const showPhoto = home && home.image && map.getZoom() >= PHOTO_ZOOM_THRESHOLD;
+
+  if (showPhoto) {
+    return L.divIcon({
+      className: "",
+      html: `<div class="marker-photo${isActive ? " is-active" : ""}">
+               <img src="${home.image}" alt="${home.name}" />
+             </div>`,
+      iconSize: [80, 60],
+      iconAnchor: [40, 30],
+    });
+  }
+
   return L.divIcon({
     className: "",
-    html: markerHtml(isActive),
+    html: `<div class="marker-badge${isActive ? " is-active" : ""}"></div>`,
     iconSize: [22, 22],
     iconAnchor: [11, 11],
   });
@@ -113,14 +124,15 @@ function markerIcon(isActive = false) {
 
 function updateMarkerStates() {
   markerRegistry.forEach((marker, slug) => {
-    marker.setIcon(markerIcon(slug === activeSlug));
+    const home = getHomeBySlug(slug);
+    marker.setIcon(markerIcon(slug === activeSlug, home));
   });
 }
 
 function addMarkers() {
   homes.forEach((home) => {
     const marker = L.marker([home.lat, home.lng], {
-      icon: markerIcon(false),
+      icon: markerIcon(false, home),
       title: home.name,
     }).addTo(map);
 
@@ -394,6 +406,7 @@ closeDetailButton.addEventListener("click", closeDetail);
 prevHomeButton.addEventListener("click", () => moveSelection(-1));
 nextHomeButton.addEventListener("click", () => moveSelection(1));
 resetViewButton.addEventListener("click", resetSouthWestView);
+map.on("zoomend", updateMarkerStates);
 visitLinkTop.addEventListener("click", (event) => {
   event.preventDefault();
   event.stopPropagation();
