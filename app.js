@@ -50,6 +50,10 @@ const regionThings = document.querySelector("#region-things");
 const regionTowns = document.querySelector("#region-towns");
 const regionFocusMap = document.querySelector("#region-focus-map");
 const regionItinerary = document.querySelector("#region-itinerary");
+const menuSheet = document.querySelector(".menu-sheet");
+const regionSheet = document.querySelector(".region-sheet");
+const menuBackToTop = document.querySelector("#menu-back-to-top");
+const regionBackToTop = document.querySelector("#region-back-to-top");
 const orderedHomes = [...homes].sort((a, b) =>
   `${a.locationGroup} ${a.name}`.localeCompare(`${b.locationGroup} ${b.name}`)
 );
@@ -476,3 +480,19 @@ window.addEventListener("hashchange", () => {
 if (window.location.hash) {
   openDetail(window.location.hash.replace(/^#/, ""), { fly: false });
 }
+
+menuSheet.addEventListener("scroll", () => {
+  menuBackToTop.classList.toggle("is-visible", menuSheet.scrollTop > 200);
+});
+
+menuBackToTop.addEventListener("click", () => {
+  menuSheet.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+regionSheet.addEventListener("scroll", () => {
+  regionBackToTop.classList.toggle("is-visible", regionSheet.scrollTop > 200);
+});
+
+regionBackToTop.addEventListener("click", () => {
+  regionSheet.scrollTo({ top: 0, behavior: "smooth" });
+});
