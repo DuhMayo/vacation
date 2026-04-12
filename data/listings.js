@@ -345,6 +345,18 @@ export const sightseeingGuides = [
   {
     region: "West Cornwall",
     focus: { center: [50.17, -5.52], zoom: 9 },
+    summary:
+      "Best for iconic west Cornwall scenery, big beach views, and the most destination-feeling coastal days on the shortlist.",
+    dayTrips: [
+      "Minack Theatre + Porthcurno Beach + sunset drink in Treen.",
+      "Carbis Bay beach morning, St Ives galleries in the afternoon, dinner by the harbour.",
+      "Short coastal-path walk near Zennor or St Levan with a slower lunch stop after.",
+    ],
+    thingsToDo: [
+      "Book the Minack Theatre early if that matters to the group.",
+      "Use the St Erth to St Ives train when you want to avoid parking stress.",
+      "Plan at least one coast-path viewpoint stop because this region is strongest on scenery.",
+    ],
     towns: [
       {
         name: "St Ives / Carbis Bay",
@@ -367,6 +379,18 @@ export const sightseeingGuides = [
   {
     region: "South & Mid Cornwall",
     focus: { center: [50.34, -4.72], zoom: 9 },
+    summary:
+      "Strong all-round Cornwall base for harbour towns, classic attractions, and easy mix-and-match day trips without huge drives.",
+    dayTrips: [
+      "Charlestown Harbour + Eden Project + dinner back on the coast.",
+      "Looe harbour morning, Polperro or Hannafore walk later in the day.",
+      "Truro browsing and cathedral stop, then Porthtowan for sunset and drinks.",
+    ],
+    thingsToDo: [
+      "Use Charlestown when the group wants easy atmosphere without a heavy itinerary.",
+      "Looe is great for boat trips and a classic fishing-town day.",
+      "This region is the easiest place to balance beaches, attractions, and town time.",
+    ],
     towns: [
       {
         name: "Charlestown / St Austell",
@@ -405,6 +429,18 @@ export const sightseeingGuides = [
   {
     region: "Devon Coast",
     focus: { center: [50.76, -4.03], zoom: 8 },
+    summary:
+      "Best when the group wants a mix of classic seaside towns, surf beaches, and a little more room to choose between beach days and city-style outings.",
+    dayTrips: [
+      "Brixham harbour wandering with a wider Torbay loop through Paignton or Torquay.",
+      "Plymouth Barbican + Hoe + Royal William Yard food stop.",
+      "North Devon beach circuit with Croyde, Woolacombe, or Westward Ho! depending on surf and weather.",
+    ],
+    thingsToDo: [
+      "North Devon is strongest for beaches, walks, and outdoor time rather than formal sightseeing.",
+      "Plymouth is the easiest pick when the group wants shopping, dining, and city energy.",
+      "Torbay gives you the broadest choice of marina, seafood, and easy coastal wandering.",
+    ],
     towns: [
       {
         name: "Brixham / Torbay",
@@ -435,6 +471,18 @@ export const sightseeingGuides = [
   {
     region: "South Wales",
     focus: { center: [51.62, -4.42], zoom: 8 },
+    summary:
+      "Best for a slightly different feel from Cornwall and Devon, with great seaside towns, dramatic coastal scenery, and strong family-friendly day trips.",
+    dayTrips: [
+      "Tenby old town and harbour with a beach afternoon and boat trip if the weather is good.",
+      "Gower scenery day built around Rhossili or Three Cliffs Bay.",
+      "Millennium Coastal Path and Pembrey Country Park for an easier activity-focused day.",
+    ],
+    thingsToDo: [
+      "Tenby is the easiest all-round crowd-pleaser if you want a charming town base.",
+      "The Gower is the best scenery-led pick when walking and viewpoints matter.",
+      "This region works well if you want coast, space, and a bit less Cornwall-style busyness.",
+    ],
     towns: [
       {
         name: "Tenby",

@@ -41,12 +41,21 @@ const menuToggle = document.querySelector("#menu-toggle");
 const closeMenuButton = document.querySelector("#close-menu");
 const menuPanel = document.querySelector("#menu-panel");
 const guideList = document.querySelector("#guide-list");
+const regionPanel = document.querySelector("#region-panel");
+const closeRegionButton = document.querySelector("#close-region");
+const regionTitle = document.querySelector("#region-title");
+const regionSummary = document.querySelector("#region-summary");
+const regionDayTrips = document.querySelector("#region-day-trips");
+const regionThings = document.querySelector("#region-things");
+const regionTowns = document.querySelector("#region-towns");
+const regionFocusMap = document.querySelector("#region-focus-map");
 const orderedHomes = [...homes].sort((a, b) =>
   `${a.locationGroup} ${a.name}`.localeCompare(`${b.locationGroup} ${b.name}`)
 );
 
 let activeSlug = null;
 let activeTouchStartX = null;
+let activeRegion = null;
 const markerRegistry = new Map();
 
 function createFallbackImage(home) {
@@ -214,6 +223,42 @@ function closeMenu() {
   menuToggle.setAttribute("aria-expanded", "false");
 }
 
+function openRegion(regionName) {
+  const region = sightseeingGuides.find((item) => item.region === regionName);
+  if (!region) return;
+
+  activeRegion = region;
+  regionTitle.textContent = region.region;
+  regionSummary.textContent = region.summary || "";
+  regionDayTrips.innerHTML = (region.dayTrips || [])
+    .map((item) => `<p>${item}</p>`)
+    .join("");
+  regionThings.innerHTML = (region.thingsToDo || [])
+    .map((item) => `<p>${item}</p>`)
+    .join("");
+  regionTowns.innerHTML = (region.towns || [])
+    .map(
+      (town) => `
+        <section class="region-town">
+          <h4>${town.name}</h4>
+          <ul>
+            ${town.highlights.map((item) => `<li>${item}</li>`).join("")}
+          </ul>
+        </section>
+      `
+    )
+    .join("");
+
+  regionPanel.classList.add("is-open");
+  regionPanel.setAttribute("aria-hidden", "false");
+}
+
+function closeRegion() {
+  activeRegion = null;
+  regionPanel.classList.remove("is-open");
+  regionPanel.setAttribute("aria-hidden", "true");
+}
+
 function renderGuide() {
   guideList.innerHTML = sightseeingGuides
     .map(
@@ -232,6 +277,15 @@ function renderGuide() {
               data-focus-zoom="${section.focus.zoom}"
             >
               Focus map
+            </button>
+          </div>
+          <div class="guide-actions">
+            <button
+              class="guide-open-button"
+              type="button"
+              data-region="${section.region}"
+            >
+              Open advanced guide
             </button>
           </div>
           <div class="guide-town-list">
@@ -262,6 +316,12 @@ function renderGuide() {
       closeMenu();
     });
   });
+
+  guideList.querySelectorAll(".guide-open-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      openRegion(button.dataset.region);
+    });
+  });
 }
 
 addMarkers();
@@ -288,6 +348,13 @@ menuToggle.addEventListener("click", () => {
   }
 });
 closeMenuButton.addEventListener("click", closeMenu);
+closeRegionButton.addEventListener("click", closeRegion);
+regionFocusMap.addEventListener("click", () => {
+  if (!activeRegion) return;
+  map.flyTo(activeRegion.focus.center, activeRegion.focus.zoom, { duration: 0.7 });
+  closeRegion();
+  closeMenu();
+});
 
 detailPanel.addEventListener("click", (event) => {
   const target = event.target;
@@ -303,8 +370,16 @@ menuPanel.addEventListener("click", (event) => {
   }
 });
 
+regionPanel.addEventListener("click", (event) => {
+  const target = event.target;
+  if (target instanceof HTMLElement && target.dataset.closeRegion === "true") {
+    closeRegion();
+  }
+});
+
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
+    if (regionPanel.classList.contains("is-open")) closeRegion();
     if (menuPanel.classList.contains("is-open")) closeMenu();
     if (detailPanel.classList.contains("is-open")) closeDetail();
   }
@@ -315,6 +390,10 @@ document.addEventListener("keydown", (event) => {
 
 detailPanel.addEventListener("touchstart", (event) => {
   activeTouchStartX = event.changedTouches[0].clientX;
+});
+
+detailPanel.addEventListener("touchcancel", () => {
+  activeTouchStartX = null;
 });
 
 detailPanel.addEventListener("touchend", (event) => {

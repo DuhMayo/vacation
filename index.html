@@ -77,6 +77,50 @@
       </section>
     </aside>
 
+    <aside id="region-panel" class="region-panel" aria-hidden="true">
+      <div class="region-scrim" data-close-region="true"></div>
+      <section class="region-sheet">
+        <button
+          id="close-region"
+          class="region-close"
+          type="button"
+          aria-label="Close advanced sightseeing guide"
+        >
+          ×
+        </button>
+
+        <div class="region-content">
+          <div class="region-head">
+            <div>
+              <p class="eyebrow">Advanced Guide</p>
+              <h2 id="region-title"></h2>
+              <p id="region-summary" class="region-summary"></p>
+            </div>
+            <button id="region-focus-map" class="guide-focus-button" type="button">
+              Focus map
+            </button>
+          </div>
+
+          <div class="region-grid">
+            <article class="region-card">
+              <h3>Day Trip Ideas</h3>
+              <div id="region-day-trips" class="region-list"></div>
+            </article>
+
+            <article class="region-card">
+              <h3>Things To Do</h3>
+              <div id="region-things" class="region-list"></div>
+            </article>
+
+            <article class="region-card region-card-wide">
+              <h3>Major Towns</h3>
+              <div id="region-towns" class="region-towns"></div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </aside>
+
     <aside
       id="detail-panel"
       class="detail-panel"
