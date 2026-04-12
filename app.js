@@ -328,24 +328,24 @@ function renderGuide() {
               <p class="eyebrow">${section.region}</p>
               <h3>${section.region}</h3>
             </div>
-            <button
-              class="guide-focus-button"
-              type="button"
-              data-focus-lat="${section.focus.center[0]}"
-              data-focus-lng="${section.focus.center[1]}"
-              data-focus-zoom="${section.focus.zoom}"
-            >
-              Focus map
-            </button>
-          </div>
-          <div class="guide-actions">
-            <button
-              class="guide-open-button"
-              type="button"
-              data-region="${section.region}"
-            >
-              Open advanced guide
-            </button>
+            <div class="guide-head-actions">
+              <button
+                class="guide-focus-button"
+                type="button"
+                data-focus-lat="${section.focus.center[0]}"
+                data-focus-lng="${section.focus.center[1]}"
+                data-focus-zoom="${section.focus.zoom}"
+              >
+                Focus
+              </button>
+              <button
+                class="guide-open-button"
+                type="button"
+                data-region="${section.region}"
+              >
+                Expand
+              </button>
+            </div>
           </div>
           <div class="guide-town-list">
             ${section.towns
