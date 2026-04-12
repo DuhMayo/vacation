@@ -108,9 +108,10 @@ function markerIcon(isActive = false, home = null) {
       className: "",
       html: `<div class="marker-photo${isActive ? " is-active" : ""}">
                <img src="${home.image}" alt="${home.name}" />
+               <div class="marker-photo-name">${home.name}</div>
              </div>`,
-      iconSize: [80, 60],
-      iconAnchor: [40, 30],
+      iconSize: [80, 76],
+      iconAnchor: [40, 38],
     });
   }
 
