@@ -234,15 +234,15 @@ export const homes = [
   {
     slug: "admirals-lookout",
     name: "Admiral's Lookout",
-    locationGroup: "Plymouth Waterfront, Devon",
+    locationGroup: "Ilfracombe, Devon",
     townArea: "Ilfracombe, Devon",
     platform: "Airbnb",
-    address: "Devon (inferred; exact address not public pre-booking)",
+    address: "Ilfracombe, Devon (exact address not public pre-booking)",
     addressConfidence: "Low-confidence area inference",
     amenities:
-      "Rocky beaches; cafes, bars and restaurants; short walk to the Barbican, Royal William Yard, and the city centre.",
+      "Ilfracombe Harbour and seafront; Tunnels Beaches; Damien Hirst's Verity statue; coastal path walks; cafes, bars and restaurants in the town centre.",
     notes:
-      "The original Chrome title only exposed Devon. Plymouth is an informed inference based on public listings using the same property name.",
+      "Location updated to Ilfracombe, North Devon based on confirmed listing details.",
     link: "https://www.airbnb.co.uk/rooms/1131223584455352480?adults=5&check_in=2026-06-01&check_out=2026-06-08&children=0&infants=0&pets=0&wishlist_item_id=11006121327484&source_impression_id=p3_1775831011_P3LyvHw5kgihcwo-&previous_page_section_name=1000",
     lat: 51.2080,
     lng: -4.1130,
@@ -948,21 +948,21 @@ export const diningGuides = {
       url: "https://www.google.com/maps/search/?api=1&query=Smokey+Joe%27s+Penzance",
     },
   ],
-  "Plymouth Waterfront, Devon": [
+  "Ilfracombe, Devon": [
     {
-      name: "The Waterfront",
-      note: "A straightforward waterside pub choice on the Hoe.",
-      url: "https://www.google.com/maps/search/?api=1&query=The+Waterfront+Plymouth+Hoe",
+      name: "The Thatched Inn",
+      note: "A 17th-century pub known for locally sourced food, real ales, and a strong Sunday roast.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Thatched+Inn+Ilfracombe",
     },
     {
-      name: "Harbour Seafood Restaurant",
-      note: "A good Sutton Harbour dinner option.",
-      url: "https://www.google.com/maps/search/?api=1&query=Harbour+Seafood+Restaurant+Plymouth",
+      name: "S&P Fish Shop & Cafe",
+      note: "Harbour-side cafe run by a local fishing family — freshly landed crab, lobster, and catch of the day.",
+      url: "https://www.google.com/maps/search/?api=1&query=S+and+P+Fish+Shop+Ilfracombe",
     },
     {
-      name: "The Admiral MacBride",
-      note: "A dependable Barbican pub stop.",
-      url: "https://www.google.com/maps/search/?api=1&query=The+Admiral+MacBride+Plymouth",
+      name: "The Lime Kiln Cafe & Bar",
+      note: "Stylish cafe-bar above Larkstone Cove with harbour views, brunch, seasonal food, and cocktails.",
+      url: "https://www.google.com/maps/search/?api=1&query=The+Lime+Kiln+Cafe+Bar+Ilfracombe",
     },
   ],
   "Porthcurno / St Levan, Cornwall": [
