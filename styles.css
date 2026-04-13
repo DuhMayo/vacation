@@ -1131,6 +1131,45 @@ a {
   cursor: pointer;
 }
 
+.favorites-name-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin-bottom: 14px;
+}
+
+.favorites-name-display {
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+.favorites-name-display strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.favorites-edit-name-btn {
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.favorites-edit-name-btn:hover {
+  text-decoration: underline;
+}
+
 .favorites-filter-bar {
   margin-bottom: 20px;
 }
@@ -1204,11 +1243,35 @@ a {
   color: var(--muted);
 }
 
+.favorite-item-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 7px;
+}
+
 .favorite-item-who {
-  margin: 7px 0 0;
+  margin: 0;
   font-size: 0.82rem;
   font-weight: 700;
   color: #e63946;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.favorite-item-count {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: white;
+  background: #e63946;
+  border-radius: 999px;
+  padding: 2px 8px;
+  line-height: 1.5;
 }
 
 /* ─── Leaflet zoom: push down to accommodate favorites toggle button ───────── */

@@ -650,10 +650,14 @@ favoriteBtn.addEventListener("click", () => {
 });
 
 // ── Name modal ────────────────────────────────────────────────────────────────
-function openNameModal() {
+function openNameModal(prefill = "") {
+  const isEdit = prefill.length > 0;
+  document.querySelector("#name-modal-title").textContent = isEdit
+    ? "Change your name"
+    : "What's your name?";
   nameModal.classList.add("is-open");
   nameModal.setAttribute("aria-hidden", "false");
-  nameInput.value = "";
+  nameInput.value = prefill;
   setTimeout(() => nameInput.focus(), 50);
 }
 
@@ -669,6 +673,7 @@ nameSubmitBtn.addEventListener("click", async () => {
   saveUserName(name);
   const slug = pendingFavoriteSlug;
   closeNameModal();
+  updateNameBar();
   if (slug) await toggleFavorite(slug);
 });
 
@@ -682,9 +687,21 @@ nameInput.addEventListener("keydown", (e) => {
 nameModal.querySelector(".name-modal-backdrop").addEventListener("click", closeNameModal);
 
 // ── Favorites panel ───────────────────────────────────────────────────────────
+function updateNameBar() {
+  const display = document.querySelector("#favorites-name-display");
+  if (!display) return;
+  display.innerHTML = userName
+    ? `Viewing as <strong>${userName}</strong>`
+    : "No name set yet";
+}
+
+const editNameBtn = document.querySelector("#edit-name-btn");
+editNameBtn.addEventListener("click", () => openNameModal(userName || ""));
+
 async function openFavoritesPanel() {
   favoritesPanel.classList.add("is-open");
   favoritesPanel.setAttribute("aria-hidden", "false");
+  updateNameBar();
   favoritesList.innerHTML = '<p class="favorites-loading">Loading&hellip;</p>';
   await fetchPublicFavorites();
   renderFavoritesList();
@@ -710,6 +727,12 @@ function renderFavoritesList() {
   }
 
   favoritesList.innerHTML = [...grouped.entries()]
+    .sort((a, b) => {
+      if (b[1].length !== a[1].length) return b[1].length - a[1].length;
+      const nameA = getHomeBySlug(a[0])?.name ?? "";
+      const nameB = getHomeBySlug(b[0])?.name ?? "";
+      return nameA.localeCompare(nameB);
+    })
     .map(([slug, names]) => {
       const home = getHomeBySlug(slug);
       if (!home) return "";
@@ -719,7 +742,10 @@ function renderFavoritesList() {
             <p class="favorite-item-name">${home.name}</p>
             <p class="favorite-item-area">${home.townArea}</p>
           </div>
-          <p class="favorite-item-who">&#x2665; ${names.join(", ")}</p>
+          <div class="favorite-item-footer">
+            <p class="favorite-item-who">&#x2665; ${names.join(", ")}</p>
+            <span class="favorite-item-count">${names.length} &#x2665;</span>
+          </div>
         </button>`;
     })
     .join("");
