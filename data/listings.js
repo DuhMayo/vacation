@@ -235,7 +235,7 @@ export const homes = [
     slug: "admirals-lookout",
     name: "Admiral's Lookout",
     locationGroup: "Plymouth Waterfront, Devon",
-    townArea: "Plymouth, Devon",
+    townArea: "Ilfracombe, Devon",
     platform: "Airbnb",
     address: "Plymouth waterfront, Devon (inferred; exact address not public pre-booking)",
     addressConfidence: "Low-confidence area inference",
@@ -244,8 +244,8 @@ export const homes = [
     notes:
       "The original Chrome title only exposed Devon. Plymouth is an informed inference based on public listings using the same property name.",
     link: "https://www.airbnb.co.uk/rooms/1131223584455352480?adults=5&check_in=2026-06-01&check_out=2026-06-08&children=0&infants=0&pets=0&wishlist_item_id=11006121327484&source_impression_id=p3_1775831011_P3LyvHw5kgihcwo-&previous_page_section_name=1000",
-    lat: 50.3658,
-    lng: -4.1387,
+    lat: 51.2080,
+    lng: -4.1130,
     image:
       "https://a0.muscache.com/im/pictures/prohost-api/Hosting-1131223584455352480/original/ab854b0c-1685-4aab-abd7-3a2ac083fffc.jpeg?im_w=720&width=720&quality=70&auto=webp",
     parking: {
