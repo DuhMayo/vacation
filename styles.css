@@ -830,25 +830,72 @@ a {
   flex-shrink: 0;
   border-radius: 999px;
   background: rgba(14, 38, 40, 0.76);
-  color: white;
+  color: rgba(255, 255, 255, 0.45);
   font-size: 1.2rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0;
-  transition: transform 180ms ease, background 180ms ease;
+  transition: transform 180ms ease, background 180ms ease, color 180ms ease;
 }
 
 .detail-heart-btn:hover {
   transform: scale(1.1);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .detail-heart-btn.is-favorited {
   background: #e63946;
+  color: white;
 }
 
 .detail-heart-btn.is-favorited:hover {
   background: #c4303c;
+}
+
+/* ─── Detail nav strip (sticky bottom, prev / next) ──────────────────────── */ (sticky bottom, prev / next) ──────────────────────── */
+.detail-nav {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  gap: 10px;
+  padding: 12px 18px calc(14px + var(--safe-bottom));
+  background: linear-gradient(to top, rgba(245, 249, 248, 0.97) 55%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  margin-top: 8px;
+}
+
+.detail-nav-btn {
+  flex: 1;
+  padding: 13px 16px;
+  border: 1px solid rgba(24, 52, 52, 0.14);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.detail-nav-btn:first-child {
+  text-align: left;
+}
+
+.detail-nav-btn:last-child {
+  text-align: right;
+}
+
+.detail-nav-btn:hover:not(:disabled) {
+  background: white;
+  transform: translateY(-1px);
+}
+
+.detail-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
 }
 
 /* ─── Favorites toggle button (on map, below reset) ───────────────────────── */

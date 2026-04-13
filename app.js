@@ -641,7 +641,6 @@ function updateHeartButton(slug) {
   const btn = document.querySelector("#favorite-btn");
   if (!btn) return;
   const isFav = slug ? localFavorites.has(slug) : false;
-  btn.textContent = isFav ? "♥" : "♡";
   btn.classList.toggle("is-favorited", isFav);
   btn.setAttribute("aria-label", isFav ? "Remove from favorites" : "Add to favorites");
 }
