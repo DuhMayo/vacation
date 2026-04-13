@@ -120,24 +120,32 @@ function getHomeBySlug(slug) {
 
 const PHOTO_ZOOM_THRESHOLD = 12;
 
-function markerIcon(isActive = false, home = null) {
+function markerIcon(isActive = false, home = null, favoriteNames = []) {
   const showPhoto = home && home.image && map.getZoom() >= PHOTO_ZOOM_THRESHOLD;
+  const hasFav = favoriteNames.length > 0;
 
   if (showPhoto) {
+    const favLine = hasFav
+      ? `<div class="marker-photo-favs">&#x2665; ${favoriteNames.join(", ")}</div>`
+      : "";
+    const iconHeight = hasFav ? 96 : 76;
     return L.divIcon({
       className: "",
       html: `<div class="marker-photo${isActive ? " is-active" : ""}">
                <img src="${home.image}" alt="${home.name}" />
                <div class="marker-photo-name">${home.name}</div>
+               ${favLine}
              </div>`,
-      iconSize: [80, 76],
-      iconAnchor: [40, 38],
+      iconSize: [80, iconHeight],
+      iconAnchor: [40, Math.round(iconHeight / 2)],
     });
   }
 
   return L.divIcon({
     className: "",
-    html: `<div class="marker-badge${isActive ? " is-active" : ""}"></div>`,
+    html: `<div class="marker-badge${isActive ? " is-active" : ""}">
+             ${hasFav ? '<span class="marker-badge-heart">&#x2665;</span>' : ""}
+           </div>`,
     iconSize: [22, 22],
     iconAnchor: [11, 11],
   });
@@ -149,7 +157,10 @@ function updateMarkerStates() {
     : null;
   markerRegistry.forEach((marker, slug) => {
     const home = getHomeBySlug(slug);
-    marker.setIcon(markerIcon(slug === activeSlug, home));
+    const favNames = publicFavorites
+      .filter((f) => f.slug === slug)
+      .map((f) => f.user_name);
+    marker.setIcon(markerIcon(slug === activeSlug, home, favNames));
     if (favSlugs) {
       if (favSlugs.has(slug)) {
         if (!map.hasLayer(marker)) marker.addTo(map);
