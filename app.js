@@ -4,6 +4,8 @@ import {
   sightseeingGuides,
   diningGuides,
 } from "./data/listings.js";
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+import { SUPABASE_URL, SUPABASE_ANON_KEY } from "./supabase-config.js";
 
 const map = L.map("map", {
   zoomControl: false,
@@ -65,6 +67,23 @@ let regionMapInstance = null;
 let regionPoiMarkers = [];
 const markerRegistry = new Map();
 
+// ─── Favorites state ──────────────────────────────────────────────────────────
+let localFavorites = new Set(
+  JSON.parse(localStorage.getItem("vhmap_favorites") || "[]")
+);
+let userName = localStorage.getItem("vhmap_username") || null;
+let publicFavorites = []; // [{ slug, user_name }] from Supabase
+let showOnlyFavorites = false;
+let pendingFavoriteSlug = null;
+let favoriteToggleInFlight = false;
+
+let supabase = null;
+try {
+  if (SUPABASE_URL && !SUPABASE_URL.startsWith("YOUR_")) {
+    supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+} catch (_) {}
+
 function createFallbackImage(home) {
   const title = encodeURIComponent(home.name);
   const subtitle = encodeURIComponent(home.townArea);
@@ -125,9 +144,21 @@ function markerIcon(isActive = false, home = null) {
 }
 
 function updateMarkerStates() {
+  const favSlugs = showOnlyFavorites
+    ? new Set(publicFavorites.map((f) => f.slug))
+    : null;
   markerRegistry.forEach((marker, slug) => {
     const home = getHomeBySlug(slug);
     marker.setIcon(markerIcon(slug === activeSlug, home));
+    if (favSlugs) {
+      if (favSlugs.has(slug)) {
+        if (!map.hasLayer(marker)) marker.addTo(map);
+      } else {
+        if (map.hasLayer(marker)) marker.remove();
+      }
+    } else {
+      if (!map.hasLayer(marker)) marker.addTo(map);
+    }
   });
 }
 
@@ -212,6 +243,7 @@ function openDetail(slug, options = {}) {
   updateNavButtons(home);
   updateMarkerStates();
   syncHash(slug);
+  updateHeartButton(slug);
 
   if (options.fly !== false) {
     focusHome(home);
@@ -466,6 +498,8 @@ regionPanel.addEventListener("click", (event) => {
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
+    if (nameModal.classList.contains("is-open")) { closeNameModal(); return; }
+    if (favoritesPanel.classList.contains("is-open")) { closeFavoritesPanel(); return; }
     if (regionPanel.classList.contains("is-open")) closeRegion();
     if (menuPanel.classList.contains("is-open")) closeMenu();
     if (detailPanel.classList.contains("is-open")) closeDetail();
@@ -503,3 +537,220 @@ regionSheet.addEventListener("scroll", () => {
 regionBackToTop.addEventListener("click", () => {
   regionSheet.scrollTo({ top: 0, behavior: "smooth" });
 });
+
+// ─── Favorites ────────────────────────────────────────────────────────────────
+
+const favoriteBtn          = document.querySelector("#favorite-btn");
+const favoritesPanel       = document.querySelector("#favorites-panel");
+const closeFavoritesBtn    = document.querySelector("#close-favorites");
+const favoritesToggleBtn   = document.querySelector("#favorites-toggle");
+const favoritesList        = document.querySelector("#favorites-list");
+const filterFavoritesBtn   = document.querySelector("#filter-favorites-btn");
+const filterActiveIndicator = document.querySelector("#filter-active-indicator");
+const nameModal            = document.querySelector("#name-modal");
+const nameInput            = document.querySelector("#name-input");
+const nameSubmitBtn        = document.querySelector("#name-submit");
+const nameCancelBtn        = document.querySelector("#name-cancel");
+
+// ── localStorage helpers ──────────────────────────────────────────────────────
+function saveLocalFavorites() {
+  localStorage.setItem("vhmap_favorites", JSON.stringify([...localFavorites]));
+}
+
+function saveUserName(name) {
+  userName = name;
+  localStorage.setItem("vhmap_username", name);
+}
+
+// ── Supabase helpers ──────────────────────────────────────────────────────────
+async function fetchPublicFavorites() {
+  if (!supabase) return;
+  try {
+    const { data, error } = await supabase
+      .from("favorites")
+      .select("slug, user_name");
+    if (!error && data) publicFavorites = data;
+  } catch (_) {}
+}
+
+async function pushFavoriteToDb(slug) {
+  if (!supabase || !userName) return;
+  try {
+    await supabase
+      .from("favorites")
+      .upsert({ slug, user_name: userName }, { onConflict: "slug,user_name", ignoreDuplicates: true });
+  } catch (_) {}
+}
+
+async function pullFavoriteFromDb(slug) {
+  if (!supabase || !userName) return;
+  try {
+    await supabase
+      .from("favorites")
+      .delete()
+      .eq("slug", slug)
+      .eq("user_name", userName);
+  } catch (_) {}
+}
+
+// ── Toggle favorite ───────────────────────────────────────────────────────────
+async function toggleFavorite(slug) {
+  if (favoriteToggleInFlight) return;
+
+  if (!userName) {
+    pendingFavoriteSlug = slug;
+    openNameModal();
+    return;
+  }
+
+  favoriteToggleInFlight = true;
+
+  if (localFavorites.has(slug)) {
+    localFavorites.delete(slug);
+    saveLocalFavorites();
+    await pullFavoriteFromDb(slug);
+  } else {
+    localFavorites.add(slug);
+    saveLocalFavorites();
+    await pushFavoriteToDb(slug);
+  }
+
+  await fetchPublicFavorites();
+  favoriteToggleInFlight = false;
+
+  updateHeartButton(slug);
+  updateMarkerStates();
+  updateFilterIndicator();
+  if (favoritesPanel.classList.contains("is-open")) {
+    renderFavoritesList();
+  }
+}
+
+function updateHeartButton(slug) {
+  const btn = document.querySelector("#favorite-btn");
+  if (!btn) return;
+  const isFav = slug ? localFavorites.has(slug) : false;
+  btn.textContent = isFav ? "♥" : "♡";
+  btn.classList.toggle("is-favorited", isFav);
+  btn.setAttribute("aria-label", isFav ? "Remove from favorites" : "Add to favorites");
+}
+
+favoriteBtn.addEventListener("click", () => {
+  if (activeSlug) toggleFavorite(activeSlug);
+});
+
+// ── Name modal ────────────────────────────────────────────────────────────────
+function openNameModal() {
+  nameModal.classList.add("is-open");
+  nameModal.setAttribute("aria-hidden", "false");
+  nameInput.value = "";
+  setTimeout(() => nameInput.focus(), 50);
+}
+
+function closeNameModal() {
+  nameModal.classList.remove("is-open");
+  nameModal.setAttribute("aria-hidden", "true");
+  pendingFavoriteSlug = null;
+}
+
+nameSubmitBtn.addEventListener("click", async () => {
+  const name = nameInput.value.trim();
+  if (!name) { nameInput.focus(); return; }
+  saveUserName(name);
+  const slug = pendingFavoriteSlug;
+  closeNameModal();
+  if (slug) await toggleFavorite(slug);
+});
+
+nameCancelBtn.addEventListener("click", closeNameModal);
+
+nameInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") nameSubmitBtn.click();
+  if (e.key === "Escape") closeNameModal();
+});
+
+nameModal.querySelector(".name-modal-backdrop").addEventListener("click", closeNameModal);
+
+// ── Favorites panel ───────────────────────────────────────────────────────────
+async function openFavoritesPanel() {
+  favoritesPanel.classList.add("is-open");
+  favoritesPanel.setAttribute("aria-hidden", "false");
+  favoritesList.innerHTML = '<p class="favorites-loading">Loading&hellip;</p>';
+  await fetchPublicFavorites();
+  renderFavoritesList();
+}
+
+function closeFavoritesPanel() {
+  favoritesPanel.classList.remove("is-open");
+  favoritesPanel.setAttribute("aria-hidden", "true");
+}
+
+function renderFavoritesList() {
+  // Group by slug, collecting all user names per location
+  const grouped = new Map();
+  for (const fav of publicFavorites) {
+    if (!grouped.has(fav.slug)) grouped.set(fav.slug, []);
+    grouped.get(fav.slug).push(fav.user_name);
+  }
+
+  if (grouped.size === 0) {
+    favoritesList.innerHTML =
+      '<p class="favorites-empty">No favorites yet — be the first to heart a location!</p>';
+    return;
+  }
+
+  favoritesList.innerHTML = [...grouped.entries()]
+    .map(([slug, names]) => {
+      const home = getHomeBySlug(slug);
+      if (!home) return "";
+      return `
+        <button class="favorite-item" type="button" data-slug="${slug}">
+          <div class="favorite-item-text">
+            <p class="favorite-item-name">${home.name}</p>
+            <p class="favorite-item-area">${home.townArea}</p>
+          </div>
+          <p class="favorite-item-who">&#x2665; ${names.join(", ")}</p>
+        </button>`;
+    })
+    .join("");
+
+  favoritesList.querySelectorAll(".favorite-item").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      closeFavoritesPanel();
+      openDetail(btn.dataset.slug);
+    });
+  });
+}
+
+function updateFilterIndicator() {
+  filterFavoritesBtn.textContent = showOnlyFavorites
+    ? "Show All Locations"
+    : "Show Favorites Only on Map";
+  filterFavoritesBtn.classList.toggle("is-active", showOnlyFavorites);
+  filterActiveIndicator.classList.toggle("is-active", showOnlyFavorites);
+  filterActiveIndicator.setAttribute("aria-hidden", showOnlyFavorites ? "false" : "true");
+}
+
+filterFavoritesBtn.addEventListener("click", () => {
+  showOnlyFavorites = !showOnlyFavorites;
+  updateFilterIndicator();
+  updateMarkerStates();
+});
+
+filterActiveIndicator.addEventListener("click", () => {
+  showOnlyFavorites = false;
+  updateFilterIndicator();
+  updateMarkerStates();
+});
+
+favoritesToggleBtn.addEventListener("click", openFavoritesPanel);
+closeFavoritesBtn.addEventListener("click", closeFavoritesPanel);
+
+favoritesPanel.addEventListener("click", (event) => {
+  if (event.target instanceof HTMLElement && event.target.dataset.closeFavorites === "true") {
+    closeFavoritesPanel();
+  }
+});
+
+// Load public favorites on startup so the filter is ready to use immediately
+fetchPublicFavorites();
