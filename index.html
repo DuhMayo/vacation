@@ -146,60 +146,64 @@
     >
       <div class="detail-scrim" data-close-detail="true"></div>
       <section class="detail-sheet">
-        <button
-          id="close-detail"
-          class="close-detail"
-          type="button"
-          aria-label="Close home view"
-        >
-          ×
-        </button>
+        <div class="detail-body">
+          <button
+            id="close-detail"
+            class="close-detail"
+            type="button"
+            aria-label="Close home view"
+          >
+            ×
+          </button>
 
-        <div class="detail-media-wrap">
-          <img id="detail-image" class="detail-image" alt="" />
-          <div class="detail-badges">
-            <span id="detail-platform" class="pill"></span>
-            <a
-              id="visit-link-top"
-              class="pill pill-link"
-              href="#"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Visit host website
-            </a>
-            <button id="favorite-btn" class="heart-button detail-heart-btn" type="button" aria-label="Add to favorites">&#x2665;</button>
-          </div>
-        </div>
-
-        <div class="detail-content">
-          <div class="detail-head">
-            <p id="detail-group" class="eyebrow"></p>
-            <h2 id="detail-title"></h2>
-            <p id="detail-area" class="detail-area"></p>
+          <div class="detail-media-wrap">
+            <img id="detail-image" class="detail-image" alt="" />
+            <div class="detail-badges">
+              <div class="detail-badges-left">
+                <span id="detail-platform" class="pill"></span>
+                <a
+                  id="visit-link-top"
+                  class="pill pill-link"
+                  href="#"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Visit host website
+                </a>
+              </div>
+              <button id="favorite-btn" class="heart-button detail-heart-btn" type="button" aria-label="Add to favorites">&#x2665;</button>
+            </div>
           </div>
 
-          <div class="detail-grid">
-            <article class="detail-card">
-              <h3>Address</h3>
-              <p id="detail-address"></p>
-              <p id="detail-confidence" class="muted"></p>
-            </article>
+          <div class="detail-content">
+            <div class="detail-head">
+              <p id="detail-group" class="eyebrow"></p>
+              <h2 id="detail-title"></h2>
+              <p id="detail-area" class="detail-area"></p>
+            </div>
 
-            <article class="detail-card">
-              <h3>Nearby Amenities</h3>
-              <p id="detail-amenities"></p>
-            </article>
+            <div class="detail-grid">
+              <article class="detail-card">
+                <h3>Address</h3>
+                <p id="detail-address"></p>
+                <p id="detail-confidence" class="muted"></p>
+              </article>
 
-            <article class="detail-card">
-              <h3>Parking</h3>
-              <div id="detail-parking"></div>
-            </article>
+              <article class="detail-card">
+                <h3>Nearby Amenities</h3>
+                <p id="detail-amenities"></p>
+              </article>
 
-            <article class="detail-card">
-              <h3>Top Restaurants & Pubs</h3>
-              <div id="detail-dining" class="detail-list"></div>
-            </article>
+              <article class="detail-card">
+                <h3>Parking</h3>
+                <div id="detail-parking"></div>
+              </article>
+
+              <article class="detail-card">
+                <h3>Top Restaurants & Pubs</h3>
+                <div id="detail-dining" class="detail-list"></div>
+              </article>
+            </div>
           </div>
         </div>
 

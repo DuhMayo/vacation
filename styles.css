@@ -634,13 +634,21 @@ a {
   position: relative;
   width: min(860px, calc(100vw - 20px));
   max-height: min(92dvh, 960px);
-  overflow: auto;
+  overflow: hidden;
   border-radius: 30px;
   background: linear-gradient(180deg, rgba(255, 250, 244, 0.98), rgba(245, 249, 248, 0.98));
   box-shadow: 0 24px 90px rgba(6, 23, 27, 0.34);
-  padding-bottom: calc(20px + var(--safe-bottom));
+  display: flex;
+  flex-direction: column;
   transform: translateY(24px);
   transition: transform 220ms ease;
+}
+
+.detail-body {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding-bottom: 8px;
 }
 
 .detail-panel.is-open .detail-sheet {
@@ -681,9 +689,17 @@ a {
   right: 16px;
   bottom: 16px;
   display: flex;
-  gap: 8px;
   align-items: center;
+  gap: 0;
+}
+
+.detail-badges-left {
+  display: flex;
+  gap: 8px;
   flex-wrap: wrap;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
 }
 
 .pill {
@@ -824,10 +840,10 @@ a {
 }
 
 .detail-heart-btn {
-  margin-left: auto;
+  flex-shrink: 0;
+  margin-left: 8px;
   width: 38px;
   height: 38px;
-  flex-shrink: 0;
   border-radius: 999px;
   background: rgba(14, 38, 40, 0.76);
   color: rgba(255, 255, 255, 0.45);
@@ -853,17 +869,14 @@ a {
   background: #c4303c;
 }
 
-/* ─── Detail nav strip (sticky bottom, prev / next) ──────────────────────── */ (sticky bottom, prev / next) ──────────────────────── */
+/* ─── Detail nav strip (persistent bottom bar, prev / next) ──────────────── */
 .detail-nav {
-  position: sticky;
-  bottom: 0;
+  flex-shrink: 0;
   display: flex;
   gap: 10px;
-  padding: 12px 18px calc(14px + var(--safe-bottom));
-  background: linear-gradient(to top, rgba(245, 249, 248, 0.97) 55%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  margin-top: 8px;
+  padding: 12px 18px calc(12px + var(--safe-bottom));
+  border-top: 1px solid var(--line);
+  background: rgba(245, 249, 248, 0.98);
 }
 
 .detail-nav-btn {
