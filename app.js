@@ -745,6 +745,7 @@ filterFavoritesBtn.addEventListener("click", () => {
   showOnlyFavorites = !showOnlyFavorites;
   updateFilterIndicator();
   updateMarkerStates();
+  if (showOnlyFavorites) closeFavoritesPanel();
 });
 
 filterActiveIndicator.addEventListener("click", () => {

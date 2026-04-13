@@ -846,7 +846,8 @@ a {
   height: 38px;
   border-radius: 999px;
   background: rgba(14, 38, 40, 0.76);
-  color: rgba(255, 255, 255, 0.45);
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.8);
   font-size: 1.2rem;
   display: inline-flex;
   align-items: center;
@@ -857,12 +858,13 @@ a {
 
 .detail-heart-btn:hover {
   transform: scale(1.1);
-  color: rgba(255, 255, 255, 0.75);
+  -webkit-text-stroke-color: white;
 }
 
 .detail-heart-btn.is-favorited {
   background: #e63946;
   color: white;
+  -webkit-text-stroke: 0px transparent;
 }
 
 .detail-heart-btn.is-favorited:hover {
