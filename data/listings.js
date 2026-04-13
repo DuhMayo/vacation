@@ -237,7 +237,7 @@ export const homes = [
     locationGroup: "Plymouth Waterfront, Devon",
     townArea: "Ilfracombe, Devon",
     platform: "Airbnb",
-    address: "Plymouth waterfront, Devon (inferred; exact address not public pre-booking)",
+    address: "Devon (inferred; exact address not public pre-booking)",
     addressConfidence: "Low-confidence area inference",
     amenities:
       "Rocky beaches; cafes, bars and restaurants; short walk to the Barbican, Royal William Yard, and the city centre.",
