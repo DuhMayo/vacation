@@ -678,9 +678,11 @@ a {
 .detail-badges {
   position: absolute;
   left: 16px;
+  right: 16px;
   bottom: 16px;
   display: flex;
   gap: 8px;
+  align-items: center;
   flex-wrap: wrap;
 }
 
@@ -813,7 +815,7 @@ a {
   transform: translateY(-1px);
 }
 
-/* ─── Heart button (photo overlay, bottom-right of detail image) ──────────── */
+/* ─── Heart button (inside detail-badges row, pushed to the right) ────────── */
 .heart-button {
   border: 0;
   cursor: pointer;
@@ -822,28 +824,23 @@ a {
 }
 
 .detail-heart-btn {
-  position: absolute;
-  bottom: 14px;
-  right: 14px;
-  width: 46px;
-  height: 46px;
+  margin-left: auto;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
   border-radius: 999px;
-  background: rgba(14, 38, 40, 0.68);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(14, 38, 40, 0.76);
   color: white;
-  font-size: 1.35rem;
-  display: flex;
+  font-size: 1.2rem;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0;
-  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.28);
-  transition: transform 200ms ease, background 200ms ease;
+  transition: transform 180ms ease, background 180ms ease;
 }
 
 .detail-heart-btn:hover {
   transform: scale(1.1);
-  background: rgba(14, 38, 40, 0.88);
 }
 
 .detail-heart-btn.is-favorited {
