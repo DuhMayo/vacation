@@ -434,6 +434,50 @@ export const homes = [
       notes: "Parking onsite listed as facility. No specific space count given.",
     },
   },
+  {
+    slug: "parkham-villa",
+    name: "Parkham Villa",
+    locationGroup: "Brixham / Torbay, Devon",
+    townArea: "Brixham, Devon",
+    platform: "HolidayCottages / Original Cottages",
+    address: "Brixham, Devon (exact address not public pre-booking)",
+    addressConfidence: "Town only",
+    amenities:
+      "Brixham harbour and marina; fishing and boating trips; South West Coast Path access; historic town with pirate and smuggler history; beaches within easy reach; Dartmoor National Park, Plymouth, Exeter, and Paignton Zoo all within day-trip distance.",
+    notes:
+      "Public listing confirms Brixham location. Stunning Regency-style villa sleeping 8 across 4 bedrooms. Features AGA kitchen, wood burner in snug, private split-level garden with terrace, and Sky TV. Property code OC-40928.",
+    link: "https://www.holidaycottages.co.uk/cottage/oc-40928-parkham-villa?n=7&sd=01062026",
+    lat: 50.3935,
+    lng: -3.5185,
+    image: "./assets/photos/parkham-villa.png",
+    parking: {
+      spaces: "2",
+      type: "On-site",
+      notes: "Off-road parking for 2 cars at rear of property. Additional roadside parking nearby, subject to availability.",
+    },
+  },
+  {
+    slug: "tides-view-appledore",
+    name: "Tides View Appledore",
+    locationGroup: "Westward Ho! / Bideford, Devon",
+    townArea: "Appledore, near Westward Ho!, Devon",
+    platform: "HolidayCottages / Original Cottages",
+    address: "Appledore, near Westward Ho!, Devon (0.5 miles from Appledore quayside)",
+    addressConfidence: "Village only",
+    amenities:
+      "Appledore quayside, pubs, restaurants, independent shops and galleries (0.5 miles); summer ferry to Instow beach; Westward Ho! golden sands and surf schools (2 miles); South West Coast Path; Northam Burrows Country Park; Royal North Devon Golf Club (1.2 miles); Skern Lodge outdoor activities next door.",
+    notes:
+      "Public listing confirms Appledore location with panoramic sea views and reverse-level layout. Hot tub and outside hot shower in enclosed rear garden. Sleeps 8 across 4 bedrooms. Sonos sound bar, Smart TVs, and table football. Property code OC-37175.",
+    link: "https://www.holidaycottages.co.uk/cottage/oc-37175-tides-view-appledore?n=7&sd=01062026",
+    lat: 51.0545,
+    lng: -4.2020,
+    image: "./assets/photos/tides-view-appledore.png",
+    parking: {
+      spaces: "3",
+      type: "On-site",
+      notes: "Parking onsite for 3 cars.",
+    },
+  },
 ];
 
 export const sightseeingGuides = [
